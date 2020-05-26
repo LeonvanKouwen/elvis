@@ -1,6 +1,8 @@
-* Tag-line: Combining holoviz panel with the golden-panel layout.
+# Elvis
+
+* Combining holoviz panel with the golden-panel layout.
 * Author: Leon van Kouwen, lvankouwen@gmail.com
-* Last updated: 21-5-2020
+* Last updated: 26-5-2020
 * Version 0.1.0
 
 ## About elvis
@@ -27,6 +29,8 @@ Feel free to use this for any purpose, within the limits of the licenses of pane
 If you make improvements or additions I kindly ask you to share them. This can be done by adding
 them to this repository, or other channels like a blog. Feel free to contact me.
 
+Some documentation is generated using pdoc3 and can be found in 'docs'.
+
 ### Impression
 
 ![Dark-Theme Demo](demos/demo-dark-param.gif)
@@ -40,14 +44,13 @@ From the directory in which the package folder is located use the following comm
     pip install elvis
 
 It is now possible to remove the elvis folder. To install in developers mode (changes to local
-elvis files are active)
+elvis files are active) use:
 
     pip install -e elvis
 
 At present it is required do use a developers install of panel. Follow the instructions
 [here](https://panel.holoviz.org/developer_guide/index.html) and checkout in the branch
 static_serve. Use the panel_dev conda environment. Note that this is only required temporarily,
-
 as serving static assets will be included in the standard panel distribution at some point.
 
 * panel 0.10.0a2.post9+g643033f dev_0
@@ -59,12 +62,12 @@ folder of the repository. Replace the default way of serving from the code
     gpanel.serve()
 
 With
-
-   gpanel.app.servable()
+    
+    gpanel.app.servable()
 
 Now from the command line one directory level higher run:
 
-   panel serve elvis
+    panel serve elvis
 
 ### Examples
 To get started with some examples look at the examples folder.
