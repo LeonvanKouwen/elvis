@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.1" />
+<title>elvis.streaming API documentation</title>
+<meta name="description" content="Work in progress. Probably more complicated than needed.
+Documentation will be added after the code is less volatile.
+LiveComputation and LivePlot are …" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>elvis.streaming</code></h1>
+</header>
+<section id="section-intro">
+<p>Work in progress. Probably more complicated than needed.
+Documentation will be added after the code is less volatile.
+LiveComputation and LivePlot are separated to make computation
+and visualization run independently.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+
+Work in progress. Probably more complicated than needed.
+Documentation will be added after the code is less volatile.
+LiveComputation and LivePlot are separated to make computation
+and visualization run independently.
+
+&#34;&#34;&#34;
+
+from tornado.ioloop import PeriodicCallback
+from tornado import gen
+import holoviews as hv
+from holoviews import dim, opts
+import numpy as np
+from bokeh.models import HoverTool
+import time
+from holoviews.streams import Buffer
+import queue
+
+
+class LiveComputation():
+
+    MINIMUM_CALLBACK_TIME_MS = 5
+
+    def __init__(self, time_callback, slow_motion=1.0, sample_time=0.1, t0=0.0):
+        self.t_sim_0 = t0
+        self.t_sim = t0
+        self.t_run = 0.0
+        self.t_run_0 = time.time()
+        self.queues = []
+        self.time_callback = time_callback
+        self.periodic_callback = None
+        self.slow_motion= slow_motion
+        self.sample_time = sample_time
+        self.set_periodic_callback()
+
+    def reset(self):
+        self.t_sim = self.t_sim_0
+        self.t_run = 0.0
+        self.t_run_0 = time.time()
+
+    @property
+    def callback_interval_ms(self):
+        # TODO use param here?
+        ms = self.sample_time * self.slow_motion * 1000
+        if ms &lt; self.MINIMUM_CALLBACK_TIME_MS:
+            ms = self.MINIMUM_CALLBACK_TIME_MS
+            print(&#34;Callback interval too low, using&#34;, ms, &#34; (ms)&#34;)
+        return ms
+
+    def start(self):
+        self.t_run = 0.0
+        self.t_run_0 = time.time()
+        self.periodic_callback.start()
+
+    def stop(self):
+        self.periodic_callback.stop()
+
+    def set_periodic_callback(self):
+        if self.periodic_callback is None:
+            self.periodic_callback = \
+                PeriodicCallback(self.fill_buffer, self.callback_interval_ms * self.slow_motion)
+        else:
+            if self.periodic_callback.is_running():
+                self.periodic_callback.stop()
+                self.periodic_callback = \
+                    PeriodicCallback(self.fill_buffer, self.callback_interval_ms)
+                self.periodic_callback.start()
+            else:
+                self.periodic_callback = \
+                    PeriodicCallback(self.fill_buffer, self.callback_interval_ms)
+
+    def register_queue(self, channel):
+        self.queues.append(channel)
+
+    @gen.coroutine
+    def fill_buffer(self):
+        # TODO Create batched calls to time_callback
+
+        t_run_new = time.time() - self.t_run_0
+        t_sim_new = self.t_sim + (t_run_new - self.t_run) / self.slow_motion
+        self.t_run = t_run_new
+        self.t_sim = t_sim_new
+
+        data = (self.t_sim, self.time_callback(self.t_sim))
+        for q in self.queues:
+            if q.full():
+                # Remove first item when the buffer is full.
+                # Theoretically the buffer could be empty again when the
+                # get command gets executed.
+                try:
+                    q.get(block=False)
+                except:
+                    pass
+            q.put(data)
+
+
+class LivePlot:
+
+    def __init__(self, callback_interval_ms=100, buffer_size=300, num_curves=2):
+
+        self.callback_interval_ms = callback_interval_ms
+        self.buffer_size = buffer_size
+        self.num_curves = num_curves
+        self.t_range = [0.0, 0.0]
+        data_empty = np.empty((0, self.num_curves + 1))
+        self.plot_buffer = Buffer(data_empty, length=self.buffer_size)
+        self.data_queue = queue.Queue(maxsize=self.buffer_size)
+        self.periodic_callback = PeriodicCallback(self.buffer_transfer,
+                                                  self.callback_interval_ms)
+        self.periodic_callback.start()
+        self.time_previous = time.time()
+        self.sample_rate = 0.0
+        self.plot = hv.DynamicMap(self.plot_update, streams=[self.plot_buffer])
+        self.plot.opts(shared_axes=False, toolbar=None, show_legend=False)
+
+
+    def reset_plot(self):
+        # Can&#39;t get this working
+        raise NotImplementedError
+        # self.periodic_callback.stop()
+        # #self.plot_buffer.clear() # this crashes
+        # self.periodic_callback.start()
+
+    def view(self):
+        return self.plot
+
+    @gen.coroutine
+    def buffer_transfer(self):
+
+        if self.data_queue.empty():
+            return
+
+        queue_size = self.data_queue.qsize()
+        current_queue = np.zeros((queue_size, self.num_curves + 1))
+
+        for i in range(queue_size):
+            try:
+                t, y = self.data_queue.get()
+                current_queue[i, 0] = t
+                current_queue[i, 1:] = y
+            except IndexError:
+                break
+        self.plot_buffer.send(current_queue)
+        self.sample_rate = queue_size / (time.time() - self.time_previous)
+        self.time_previous = time.time()
+
+    def plot_update(self, data):
+
+        if len(data) == 0:
+            # Initially an empty array is send once by the Buffer.
+            overlay = hv.Overlay()
+            for i in range(self.num_curves):
+                overlay = overlay * hv.Curve((np.nan, np.nan))
+            return overlay
+
+        t = data[:, 0]
+        overlay = hv.Overlay()
+        time = hv.Dimension(&#39;time&#39;, label=&#39;simulation time&#39;, unit=&#39;s&#39;)
+        field = hv.Dimension(&#39;field&#39;, label=&#39;electric field&#39;, unit=&#39;V/m&#39;)
+
+        for i in range(1, data.shape[1]):
+            overlay = overlay * hv.Curve((t, data[:, i]), time, field)
+
+        self.t_range = refresh_time_range(t, self.t_range,
+                                          num_data_points=self.buffer_size)
+        y_range = range_margin(data[:, 1:])
+        hoovertool = HoverTool(mode=&#39;vline&#39;,
+            tooltips=[(&#39;Time&#39;, &#39;@time&#39;), (&#39;Field&#39;, &#39;@field&#39;)])
+
+        return overlay.opts(
+            opts.Curve(xlim=tuple(self.t_range),
+                       ylim=tuple(y_range),
+                       tools=[hoovertool]))
+
+
+def refresh_time_range(t, range, num_data_points=300,
+                       rescale_fraction=0.75, growth_factor=2.0):
+    tmin = t[0]
+    tmax = t[-1]
+    if len(t) &gt;= num_data_points:
+        if tmax &gt;= range[1] or tmin &gt;= range[0]:
+            range[0] = tmin + (tmax - tmin) * rescale_fraction
+            range[1] = tmax + (tmax - tmin) * rescale_fraction
+    elif range[1] &lt;= tmax:
+        range[0] = tmin
+        range[1] = tmin + growth_factor * (tmax - tmin)
+    return range
+
+
+def range_margin(y, margin=0.02):
+    ymin = np.min(y)
+    ymax = np.max(y)
+    delta_y = ymax - ymin
+    return [ymin - margin * delta_y, ymax + margin * delta_y]</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="elvis.streaming.range_margin"><code class="name flex">
+<span>def <span class="ident">range_margin</span></span>(<span>y, margin=0.02)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def range_margin(y, margin=0.02):
+    ymin = np.min(y)
+    ymax = np.max(y)
+    delta_y = ymax - ymin
+    return [ymin - margin * delta_y, ymax + margin * delta_y]</code></pre>
+</details>
+</dd>
+<dt id="elvis.streaming.refresh_time_range"><code class="name flex">
+<span>def <span class="ident">refresh_time_range</span></span>(<span>t, range, num_data_points=300, rescale_fraction=0.75, growth_factor=2.0)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def refresh_time_range(t, range, num_data_points=300,
+                       rescale_fraction=0.75, growth_factor=2.0):
+    tmin = t[0]
+    tmax = t[-1]
+    if len(t) &gt;= num_data_points:
+        if tmax &gt;= range[1] or tmin &gt;= range[0]:
+            range[0] = tmin + (tmax - tmin) * rescale_fraction
+            range[1] = tmax + (tmax - tmin) * rescale_fraction
+    elif range[1] &lt;= tmax:
+        range[0] = tmin
+        range[1] = tmin + growth_factor * (tmax - tmin)
+    return range</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="elvis.streaming.LiveComputation"><code class="flex name class">
+<span>class <span class="ident">LiveComputation</span></span>
+<span>(</span><span>time_callback, slow_motion=1.0, sample_time=0.1, t0=0.0)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LiveComputation():
+
+    MINIMUM_CALLBACK_TIME_MS = 5
+
+    def __init__(self, time_callback, slow_motion=1.0, sample_time=0.1, t0=0.0):
+        self.t_sim_0 = t0
+        self.t_sim = t0
+        self.t_run = 0.0
+        self.t_run_0 = time.time()
+        self.queues = []
+        self.time_callback = time_callback
+        self.periodic_callback = None
+        self.slow_motion= slow_motion
+        self.sample_time = sample_time
+        self.set_periodic_callback()
+
+    def reset(self):
+        self.t_sim = self.t_sim_0
+        self.t_run = 0.0
+        self.t_run_0 = time.time()
+
+    @property
+    def callback_interval_ms(self):
+        # TODO use param here?
+        ms = self.sample_time * self.slow_motion * 1000
+        if ms &lt; self.MINIMUM_CALLBACK_TIME_MS:
+            ms = self.MINIMUM_CALLBACK_TIME_MS
+            print(&#34;Callback interval too low, using&#34;, ms, &#34; (ms)&#34;)
+        return ms
+
+    def start(self):
+        self.t_run = 0.0
+        self.t_run_0 = time.time()
+        self.periodic_callback.start()
+
+    def stop(self):
+        self.periodic_callback.stop()
+
+    def set_periodic_callback(self):
+        if self.periodic_callback is None:
+            self.periodic_callback = \
+                PeriodicCallback(self.fill_buffer, self.callback_interval_ms * self.slow_motion)
+        else:
+            if self.periodic_callback.is_running():
+                self.periodic_callback.stop()
+                self.periodic_callback = \
+                    PeriodicCallback(self.fill_buffer, self.callback_interval_ms)
+                self.periodic_callback.start()
+            else:
+                self.periodic_callback = \
+                    PeriodicCallback(self.fill_buffer, self.callback_interval_ms)
+
+    def register_queue(self, channel):
+        self.queues.append(channel)
+
+    @gen.coroutine
+    def fill_buffer(self):
+        # TODO Create batched calls to time_callback
+
+        t_run_new = time.time() - self.t_run_0
+        t_sim_new = self.t_sim + (t_run_new - self.t_run) / self.slow_motion
+        self.t_run = t_run_new
+        self.t_sim = t_sim_new
+
+        data = (self.t_sim, self.time_callback(self.t_sim))
+        for q in self.queues:
+            if q.full():
+                # Remove first item when the buffer is full.
+                # Theoretically the buffer could be empty again when the
+                # get command gets executed.
+                try:
+                    q.get(block=False)
+                except:
+                    pass
+            q.put(data)</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="elvis.streaming.LiveComputation.MINIMUM_CALLBACK_TIME_MS"><code class="name">var <span class="ident">MINIMUM_CALLBACK_TIME_MS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="elvis.streaming.LiveComputation.callback_interval_ms"><code class="name">var <span class="ident">callback_interval_ms</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def callback_interval_ms(self):
+    # TODO use param here?
+    ms = self.sample_time * self.slow_motion * 1000
+    if ms &lt; self.MINIMUM_CALLBACK_TIME_MS:
+        ms = self.MINIMUM_CALLBACK_TIME_MS
+        print(&#34;Callback interval too low, using&#34;, ms, &#34; (ms)&#34;)
+    return ms</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="elvis.streaming.LiveComputation.fill_buffer"><code class="name flex">
+<span>def <span class="ident">fill_buffer</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@gen.coroutine
+def fill_buffer(self):
+    # TODO Create batched calls to time_callback
+
+    t_run_new = time.time() - self.t_run_0
+    t_sim_new = self.t_sim + (t_run_new - self.t_run) / self.slow_motion
+    self.t_run = t_run_new
+    self.t_sim = t_sim_new
+
+    data = (self.t_sim, self.time_callback(self.t_sim))
+    for q in self.queues:
+        if q.full():
+            # Remove first item when the buffer is full.
+            # Theoretically the buffer could be empty again when the
+            # get command gets executed.
+            try:
+                q.get(block=False)
+            except:
+                pass
+        q.put(data)</code></pre>
+</details>
+</dd>
+<dt id="elvis.streaming.LiveComputation.register_queue"><code class="name flex">
+<span>def <span class="ident">register_queue</span></span>(<span>self, channel)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def register_queue(self, channel):
+    self.queues.append(channel)</code></pre>
+</details>
+</dd>
+<dt id="elvis.streaming.LiveComputation.reset"><code class="name flex">
+<span>def <span class="ident">reset</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reset(self):
+    self.t_sim = self.t_sim_0
+    self.t_run = 0.0
+    self.t_run_0 = time.time()</code></pre>
+</details>
+</dd>
+<dt id="elvis.streaming.LiveComputation.set_periodic_callback"><code class="name flex">
+<span>def <span class="ident">set_periodic_callback</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_periodic_callback(self):
+    if self.periodic_callback is None:
+        self.periodic_callback = \
+            PeriodicCallback(self.fill_buffer, self.callback_interval_ms * self.slow_motion)
+    else:
+        if self.periodic_callback.is_running():
+            self.periodic_callback.stop()
+            self.periodic_callback = \
+                PeriodicCallback(self.fill_buffer, self.callback_interval_ms)
+            self.periodic_callback.start()
+        else:
+            self.periodic_callback = \
+                PeriodicCallback(self.fill_buffer, self.callback_interval_ms)</code></pre>
+</details>
+</dd>
+<dt id="elvis.streaming.LiveComputation.start"><code class="name flex">
+<span>def <span class="ident">start</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def start(self):
+    self.t_run = 0.0
+    self.t_run_0 = time.time()
+    self.periodic_callback.start()</code></pre>
+</details>
+</dd>
+<dt id="elvis.streaming.LiveComputation.stop"><code class="name flex">
+<span>def <span class="ident">stop</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def stop(self):
+    self.periodic_callback.stop()</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="elvis.streaming.LivePlot"><code class="flex name class">
+<span>class <span class="ident">LivePlot</span></span>
+<span>(</span><span>callback_interval_ms=100, buffer_size=300, num_curves=2)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LivePlot:
+
+    def __init__(self, callback_interval_ms=100, buffer_size=300, num_curves=2):
+
+        self.callback_interval_ms = callback_interval_ms
+        self.buffer_size = buffer_size
+        self.num_curves = num_curves
+        self.t_range = [0.0, 0.0]
+        data_empty = np.empty((0, self.num_curves + 1))
+        self.plot_buffer = Buffer(data_empty, length=self.buffer_size)
+        self.data_queue = queue.Queue(maxsize=self.buffer_size)
+        self.periodic_callback = PeriodicCallback(self.buffer_transfer,
+                                                  self.callback_interval_ms)
+        self.periodic_callback.start()
+        self.time_previous = time.time()
+        self.sample_rate = 0.0
+        self.plot = hv.DynamicMap(self.plot_update, streams=[self.plot_buffer])
+        self.plot.opts(shared_axes=False, toolbar=None, show_legend=False)
+
+
+    def reset_plot(self):
+        # Can&#39;t get this working
+        raise NotImplementedError
+        # self.periodic_callback.stop()
+        # #self.plot_buffer.clear() # this crashes
+        # self.periodic_callback.start()
+
+    def view(self):
+        return self.plot
+
+    @gen.coroutine
+    def buffer_transfer(self):
+
+        if self.data_queue.empty():
+            return
+
+        queue_size = self.data_queue.qsize()
+        current_queue = np.zeros((queue_size, self.num_curves + 1))
+
+        for i in range(queue_size):
+            try:
+                t, y = self.data_queue.get()
+                current_queue[i, 0] = t
+                current_queue[i, 1:] = y
+            except IndexError:
+                break
+        self.plot_buffer.send(current_queue)
+        self.sample_rate = queue_size / (time.time() - self.time_previous)
+        self.time_previous = time.time()
+
+    def plot_update(self, data):
+
+        if len(data) == 0:
+            # Initially an empty array is send once by the Buffer.
+            overlay = hv.Overlay()
+            for i in range(self.num_curves):
+                overlay = overlay * hv.Curve((np.nan, np.nan))
+            return overlay
+
+        t = data[:, 0]
+        overlay = hv.Overlay()
+        time = hv.Dimension(&#39;time&#39;, label=&#39;simulation time&#39;, unit=&#39;s&#39;)
+        field = hv.Dimension(&#39;field&#39;, label=&#39;electric field&#39;, unit=&#39;V/m&#39;)
+
+        for i in range(1, data.shape[1]):
+            overlay = overlay * hv.Curve((t, data[:, i]), time, field)
+
+        self.t_range = refresh_time_range(t, self.t_range,
+                                          num_data_points=self.buffer_size)
+        y_range = range_margin(data[:, 1:])
+        hoovertool = HoverTool(mode=&#39;vline&#39;,
+            tooltips=[(&#39;Time&#39;, &#39;@time&#39;), (&#39;Field&#39;, &#39;@field&#39;)])
+
+        return overlay.opts(
+            opts.Curve(xlim=tuple(self.t_range),
+                       ylim=tuple(y_range),
+                       tools=[hoovertool]))</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="elvis.streaming.LivePlot.buffer_transfer"><code class="name flex">
+<span>def <span class="ident">buffer_transfer</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@gen.coroutine
+def buffer_transfer(self):
+
+    if self.data_queue.empty():
+        return
+
+    queue_size = self.data_queue.qsize()
+    current_queue = np.zeros((queue_size, self.num_curves + 1))
+
+    for i in range(queue_size):
+        try:
+            t, y = self.data_queue.get()
+            current_queue[i, 0] = t
+            current_queue[i, 1:] = y
+        except IndexError:
+            break
+    self.plot_buffer.send(current_queue)
+    self.sample_rate = queue_size / (time.time() - self.time_previous)
+    self.time_previous = time.time()</code></pre>
+</details>
+</dd>
+<dt id="elvis.streaming.LivePlot.plot_update"><code class="name flex">
+<span>def <span class="ident">plot_update</span></span>(<span>self, data)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_update(self, data):
+
+    if len(data) == 0:
+        # Initially an empty array is send once by the Buffer.
+        overlay = hv.Overlay()
+        for i in range(self.num_curves):
+            overlay = overlay * hv.Curve((np.nan, np.nan))
+        return overlay
+
+    t = data[:, 0]
+    overlay = hv.Overlay()
+    time = hv.Dimension(&#39;time&#39;, label=&#39;simulation time&#39;, unit=&#39;s&#39;)
+    field = hv.Dimension(&#39;field&#39;, label=&#39;electric field&#39;, unit=&#39;V/m&#39;)
+
+    for i in range(1, data.shape[1]):
+        overlay = overlay * hv.Curve((t, data[:, i]), time, field)
+
+    self.t_range = refresh_time_range(t, self.t_range,
+                                      num_data_points=self.buffer_size)
+    y_range = range_margin(data[:, 1:])
+    hoovertool = HoverTool(mode=&#39;vline&#39;,
+        tooltips=[(&#39;Time&#39;, &#39;@time&#39;), (&#39;Field&#39;, &#39;@field&#39;)])
+
+    return overlay.opts(
+        opts.Curve(xlim=tuple(self.t_range),
+                   ylim=tuple(y_range),
+                   tools=[hoovertool]))</code></pre>
+</details>
+</dd>
+<dt id="elvis.streaming.LivePlot.reset_plot"><code class="name flex">
+<span>def <span class="ident">reset_plot</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reset_plot(self):
+    # Can&#39;t get this working
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="elvis.streaming.LivePlot.view"><code class="name flex">
+<span>def <span class="ident">view</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def view(self):
+    return self.plot</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="elvis" href="index.html">elvis</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="elvis.streaming.range_margin" href="#elvis.streaming.range_margin">range_margin</a></code></li>
+<li><code><a title="elvis.streaming.refresh_time_range" href="#elvis.streaming.refresh_time_range">refresh_time_range</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="elvis.streaming.LiveComputation" href="#elvis.streaming.LiveComputation">LiveComputation</a></code></h4>
+<ul class="">
+<li><code><a title="elvis.streaming.LiveComputation.MINIMUM_CALLBACK_TIME_MS" href="#elvis.streaming.LiveComputation.MINIMUM_CALLBACK_TIME_MS">MINIMUM_CALLBACK_TIME_MS</a></code></li>
+<li><code><a title="elvis.streaming.LiveComputation.callback_interval_ms" href="#elvis.streaming.LiveComputation.callback_interval_ms">callback_interval_ms</a></code></li>
+<li><code><a title="elvis.streaming.LiveComputation.fill_buffer" href="#elvis.streaming.LiveComputation.fill_buffer">fill_buffer</a></code></li>
+<li><code><a title="elvis.streaming.LiveComputation.register_queue" href="#elvis.streaming.LiveComputation.register_queue">register_queue</a></code></li>
+<li><code><a title="elvis.streaming.LiveComputation.reset" href="#elvis.streaming.LiveComputation.reset">reset</a></code></li>
+<li><code><a title="elvis.streaming.LiveComputation.set_periodic_callback" href="#elvis.streaming.LiveComputation.set_periodic_callback">set_periodic_callback</a></code></li>
+<li><code><a title="elvis.streaming.LiveComputation.start" href="#elvis.streaming.LiveComputation.start">start</a></code></li>
+<li><code><a title="elvis.streaming.LiveComputation.stop" href="#elvis.streaming.LiveComputation.stop">stop</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="elvis.streaming.LivePlot" href="#elvis.streaming.LivePlot">LivePlot</a></code></h4>
+<ul class="">
+<li><code><a title="elvis.streaming.LivePlot.buffer_transfer" href="#elvis.streaming.LivePlot.buffer_transfer">buffer_transfer</a></code></li>
+<li><code><a title="elvis.streaming.LivePlot.plot_update" href="#elvis.streaming.LivePlot.plot_update">plot_update</a></code></li>
+<li><code><a title="elvis.streaming.LivePlot.reset_plot" href="#elvis.streaming.LivePlot.reset_plot">reset_plot</a></code></li>
+<li><code><a title="elvis.streaming.LivePlot.view" href="#elvis.streaming.LivePlot.view">view</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

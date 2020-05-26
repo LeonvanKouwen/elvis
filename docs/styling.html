@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.1" />
+<title>elvis.styling API documentation</title>
+<meta name="description" content="Restyling of plotting backends.
+Currently only the Bokeh backend in combination with holoviews is used." />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>elvis.styling</code></h1>
+</header>
+<section id="section-intro">
+<p>Restyling of plotting backends.
+Currently only the Bokeh backend in combination with holoviews is used.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+Restyling of plotting backends.
+Currently only the Bokeh backend in combination with holoviews is used.
+&#34;&#34;&#34;
+
+import holoviews as hv
+from bokeh.themes.theme import Theme
+from holoviews import dim, opts
+
+
+class LIGHT():
+    COLOR_LINES = &#34;#ffffff&#34;
+    COLOR_BACKGROUND = &#34;#f3f4f2&#34;
+    COLOR_TEXT = &#34;#6B6B6B&#34;
+    FONT = &#34;Helvetica&#34;
+    FONT_SIZE = &#34;1.2em&#34;
+
+
+class DARK():
+    COLOR_LINES = &#34;#3c4033&#34; #272822&#34;
+    COLOR_BACKGROUND = None
+    COLOR_TEXT = &#34;#aaaaaa&#34;
+    FONT = &#34;Helvetica&#34;
+    FONT_SIZE = &#34;1.2em&#34;
+
+
+class Bokeh():
+    &#34;&#34;&#34; Restyling functionality for the Bokeh backend. &#34;&#34;&#34;
+    @classmethod
+    def style(cls, theme_str):
+
+        if theme_str == &#39;light&#39;:
+            theme = LIGHT
+        elif theme_str == &#39;dark&#39;:
+            theme = DARK
+
+        return {
+            &#34;attrs&#34;: {
+                &#39;Figure&#39;: {
+    #                &#39;toolbar_location&#39;: None,
+                    &#34;outline_line_width&#34;: 0,
+                    &#34;outline_line_color&#34;: None,
+                    &#39;min_border_right&#39;: 10,
+                    &#39;border_fill_color&#39;: None,
+                    &#39;sizing_mode&#39;: &#39;stretch_width&#39;},
+                &#34;Axis&#34;: {
+                    # &#34;major_tick_line_alpha&#34;: 0,
+                    &#34;major_tick_line_color&#34;: None,
+                    # &#34;minor_tick_line_alpha&#34;: 0,
+                    &#34;minor_tick_line_color&#34;: None,
+                    # &#34;axis_line_alpha&#34;: 0,
+                    &#34;axis_line_color&#34;: None,
+                    &#34;major_label_text_color&#34;: theme.COLOR_TEXT,
+                    &#34;major_label_text_font&#34;: theme.FONT,
+                    &#34;major_label_text_font_size&#34;: theme.FONT_SIZE,
+                    &#34;axis_label_standoff&#34;: 10,
+                    &#34;axis_label_text_color&#34;: theme.COLOR_TEXT,
+                    &#34;axis_label_text_font&#34;: theme.FONT,
+                    &#34;axis_label_text_font_size&#34;: theme.FONT_SIZE,
+                    &#34;axis_label_text_font_style&#34;: &#34;normal&#34;,
+                },
+                &#34;Plot&#34;: {
+                    # &#34;width&#34;: 450,
+                    # &#34;height&#34;: 280,
+                    &#34;background_fill_color&#34;: theme.COLOR_BACKGROUND,
+                },
+                &#39;Grid&#39;: {
+                    &#39;grid_line_color&#39;: theme.COLOR_LINES},
+                &#34;Legend&#34;: {
+                    &#34;label_text_font&#34;: theme.FONT,
+                    &#34;label_text_font_size&#34;: theme.FONT_SIZE,
+                    &#34;spacing&#34;: 2,
+                    &#34;label_text_color&#34;: theme.COLOR_TEXT,
+                    &#34;border_line_color&#34;: theme.COLOR_LINES,
+                    &#34;background_fill_color&#34;: theme.COLOR_BACKGROUND},
+                # &#34;ColorBar&#34;: {
+                #     &#34;title_text_color&#34;: &#34;#5B5B5B&#34;,
+                #     &#34;title_text_font&#34;: &#34;Helvetica&#34;,
+                #     &#34;title_text_font_size&#34;: &#34;1.025em&#34;,
+                #     &#34;title_text_font_style&#34;: &#34;normal&#34;,
+                #     &#34;major_label_text_color&#34;: &#34;#5B5B5B&#34;,
+                #     &#34;major_label_text_font&#34;: &#34;Helvetica&#34;,
+                #     &#34;major_label_text_font_size&#34;: &#34;1.025em&#34;,
+                #     &#34;major_tick_line_alpha&#34;: 0,
+                #     &#34;bar_line_alpha&#34;: 0},
+                &#34;Title&#34;: {
+                    &#34;text_color&#34;: theme.COLOR_TEXT,
+                    &#34;text_font&#34;: theme.FONT,
+                    &#34;text_font_size&#34;: theme.FONT_SIZE}}}
+            # This doesn&#39;t work yet, but suposedly will soon.
+            #         &#34;LineGlyph&#34;: {&#34;line_color&#34;: &#34;#ee33ee&#34;, &#34;line_width&#34;: 2},
+            #         &#34;FillGlyph&#34;: {&#34;fill_color&#34;: &#34;orange&#34;},
+            #         &#34;HatchGlyph&#34;: {&#34;hatch_pattern&#34;: &#34;@&#34;, &#34;hatch_alpha&#34;: 0.8},
+            #         &#34;TextGlyph&#34;: {
+        #             &#34;text_color&#34;: &#34;red&#34;,
+        #             &#34;text_font_style&#34;: &#34;bold&#34;,
+        #             &#34;text_font&#34;: &#34;Helvetica&#34;,
+        #         },
+        #         &#34;Ellipse&#34;: {&#34;fill_color&#34;: &#34;green&#34;, &#34;line_color&#34;: &#34;yellow&#34;, &#34;fill_alpha&#34;: 0.2},
+
+    DEFAULT_POINT_OPTS = {
+        &#39;show_grid&#39;: True,
+        &#39;size&#39;: 8,
+        &#39;fill_color&#39;: &#34;#ffffff&#34;,
+        &#39;line_width&#39;: 2,
+#       &#39;toolbar&#39;: &#39;above&#39;,
+#       &#39;legend_position&#39;: &#39;right&#39;
+    }
+
+    DEFAULT_PLOT_OPTS = {
+        &#39;show_grid&#39;: True,
+        &#39;line_width&#39;: 2,
+        &#39;responsive&#39;: True
+    }
+
+    @classmethod
+    def set_elvis_style(cls, theme=&#39;light&#39;):
+        hv.extension(&#39;bokeh&#39;)
+        hv.renderer(&#39;bokeh&#39;).theme = Theme(json=cls.style(theme))
+        cls.curve_defaults()
+        cls.point_defaults()
+
+    @classmethod
+    def curve_defaults(cls, **kwargs):
+        return opts.defaults(opts.Curve(**_dict_merge(kwargs, cls.DEFAULT_PLOT_OPTS)))
+
+    @classmethod
+    def point_defaults(cls, **kwargs):
+        return opts.defaults(opts.Points(**_dict_merge(kwargs, cls.DEFAULT_POINT_OPTS)))
+
+
+def _dict_merge(dominant, recessive):
+    &#34;&#34;&#34;
+    Combines the two dicts. In case of duplicate keys,
+    the values of &#39;dominant&#39; are used.
+    &#34;&#34;&#34;
+    for key, value in recessive.items():
+        dominant[key] = dominant.setdefault(key, value)
+    return dominant</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="elvis.styling.Bokeh"><code class="flex name class">
+<span>class <span class="ident">Bokeh</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Restyling functionality for the Bokeh backend.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Bokeh():
+    &#34;&#34;&#34; Restyling functionality for the Bokeh backend. &#34;&#34;&#34;
+    @classmethod
+    def style(cls, theme_str):
+
+        if theme_str == &#39;light&#39;:
+            theme = LIGHT
+        elif theme_str == &#39;dark&#39;:
+            theme = DARK
+
+        return {
+            &#34;attrs&#34;: {
+                &#39;Figure&#39;: {
+    #                &#39;toolbar_location&#39;: None,
+                    &#34;outline_line_width&#34;: 0,
+                    &#34;outline_line_color&#34;: None,
+                    &#39;min_border_right&#39;: 10,
+                    &#39;border_fill_color&#39;: None,
+                    &#39;sizing_mode&#39;: &#39;stretch_width&#39;},
+                &#34;Axis&#34;: {
+                    # &#34;major_tick_line_alpha&#34;: 0,
+                    &#34;major_tick_line_color&#34;: None,
+                    # &#34;minor_tick_line_alpha&#34;: 0,
+                    &#34;minor_tick_line_color&#34;: None,
+                    # &#34;axis_line_alpha&#34;: 0,
+                    &#34;axis_line_color&#34;: None,
+                    &#34;major_label_text_color&#34;: theme.COLOR_TEXT,
+                    &#34;major_label_text_font&#34;: theme.FONT,
+                    &#34;major_label_text_font_size&#34;: theme.FONT_SIZE,
+                    &#34;axis_label_standoff&#34;: 10,
+                    &#34;axis_label_text_color&#34;: theme.COLOR_TEXT,
+                    &#34;axis_label_text_font&#34;: theme.FONT,
+                    &#34;axis_label_text_font_size&#34;: theme.FONT_SIZE,
+                    &#34;axis_label_text_font_style&#34;: &#34;normal&#34;,
+                },
+                &#34;Plot&#34;: {
+                    # &#34;width&#34;: 450,
+                    # &#34;height&#34;: 280,
+                    &#34;background_fill_color&#34;: theme.COLOR_BACKGROUND,
+                },
+                &#39;Grid&#39;: {
+                    &#39;grid_line_color&#39;: theme.COLOR_LINES},
+                &#34;Legend&#34;: {
+                    &#34;label_text_font&#34;: theme.FONT,
+                    &#34;label_text_font_size&#34;: theme.FONT_SIZE,
+                    &#34;spacing&#34;: 2,
+                    &#34;label_text_color&#34;: theme.COLOR_TEXT,
+                    &#34;border_line_color&#34;: theme.COLOR_LINES,
+                    &#34;background_fill_color&#34;: theme.COLOR_BACKGROUND},
+                # &#34;ColorBar&#34;: {
+                #     &#34;title_text_color&#34;: &#34;#5B5B5B&#34;,
+                #     &#34;title_text_font&#34;: &#34;Helvetica&#34;,
+                #     &#34;title_text_font_size&#34;: &#34;1.025em&#34;,
+                #     &#34;title_text_font_style&#34;: &#34;normal&#34;,
+                #     &#34;major_label_text_color&#34;: &#34;#5B5B5B&#34;,
+                #     &#34;major_label_text_font&#34;: &#34;Helvetica&#34;,
+                #     &#34;major_label_text_font_size&#34;: &#34;1.025em&#34;,
+                #     &#34;major_tick_line_alpha&#34;: 0,
+                #     &#34;bar_line_alpha&#34;: 0},
+                &#34;Title&#34;: {
+                    &#34;text_color&#34;: theme.COLOR_TEXT,
+                    &#34;text_font&#34;: theme.FONT,
+                    &#34;text_font_size&#34;: theme.FONT_SIZE}}}
+            # This doesn&#39;t work yet, but suposedly will soon.
+            #         &#34;LineGlyph&#34;: {&#34;line_color&#34;: &#34;#ee33ee&#34;, &#34;line_width&#34;: 2},
+            #         &#34;FillGlyph&#34;: {&#34;fill_color&#34;: &#34;orange&#34;},
+            #         &#34;HatchGlyph&#34;: {&#34;hatch_pattern&#34;: &#34;@&#34;, &#34;hatch_alpha&#34;: 0.8},
+            #         &#34;TextGlyph&#34;: {
+        #             &#34;text_color&#34;: &#34;red&#34;,
+        #             &#34;text_font_style&#34;: &#34;bold&#34;,
+        #             &#34;text_font&#34;: &#34;Helvetica&#34;,
+        #         },
+        #         &#34;Ellipse&#34;: {&#34;fill_color&#34;: &#34;green&#34;, &#34;line_color&#34;: &#34;yellow&#34;, &#34;fill_alpha&#34;: 0.2},
+
+    DEFAULT_POINT_OPTS = {
+        &#39;show_grid&#39;: True,
+        &#39;size&#39;: 8,
+        &#39;fill_color&#39;: &#34;#ffffff&#34;,
+        &#39;line_width&#39;: 2,
+#       &#39;toolbar&#39;: &#39;above&#39;,
+#       &#39;legend_position&#39;: &#39;right&#39;
+    }
+
+    DEFAULT_PLOT_OPTS = {
+        &#39;show_grid&#39;: True,
+        &#39;line_width&#39;: 2,
+        &#39;responsive&#39;: True
+    }
+
+    @classmethod
+    def set_elvis_style(cls, theme=&#39;light&#39;):
+        hv.extension(&#39;bokeh&#39;)
+        hv.renderer(&#39;bokeh&#39;).theme = Theme(json=cls.style(theme))
+        cls.curve_defaults()
+        cls.point_defaults()
+
+    @classmethod
+    def curve_defaults(cls, **kwargs):
+        return opts.defaults(opts.Curve(**_dict_merge(kwargs, cls.DEFAULT_PLOT_OPTS)))
+
+    @classmethod
+    def point_defaults(cls, **kwargs):
+        return opts.defaults(opts.Points(**_dict_merge(kwargs, cls.DEFAULT_POINT_OPTS)))</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="elvis.styling.Bokeh.DEFAULT_PLOT_OPTS"><code class="name">var <span class="ident">DEFAULT_PLOT_OPTS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="elvis.styling.Bokeh.DEFAULT_POINT_OPTS"><code class="name">var <span class="ident">DEFAULT_POINT_OPTS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="elvis.styling.Bokeh.curve_defaults"><code class="name flex">
+<span>def <span class="ident">curve_defaults</span></span>(<span>**kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def curve_defaults(cls, **kwargs):
+    return opts.defaults(opts.Curve(**_dict_merge(kwargs, cls.DEFAULT_PLOT_OPTS)))</code></pre>
+</details>
+</dd>
+<dt id="elvis.styling.Bokeh.point_defaults"><code class="name flex">
+<span>def <span class="ident">point_defaults</span></span>(<span>**kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def point_defaults(cls, **kwargs):
+    return opts.defaults(opts.Points(**_dict_merge(kwargs, cls.DEFAULT_POINT_OPTS)))</code></pre>
+</details>
+</dd>
+<dt id="elvis.styling.Bokeh.set_elvis_style"><code class="name flex">
+<span>def <span class="ident">set_elvis_style</span></span>(<span>theme='light')</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def set_elvis_style(cls, theme=&#39;light&#39;):
+    hv.extension(&#39;bokeh&#39;)
+    hv.renderer(&#39;bokeh&#39;).theme = Theme(json=cls.style(theme))
+    cls.curve_defaults()
+    cls.point_defaults()</code></pre>
+</details>
+</dd>
+<dt id="elvis.styling.Bokeh.style"><code class="name flex">
+<span>def <span class="ident">style</span></span>(<span>theme_str)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def style(cls, theme_str):
+
+    if theme_str == &#39;light&#39;:
+        theme = LIGHT
+    elif theme_str == &#39;dark&#39;:
+        theme = DARK
+
+    return {
+        &#34;attrs&#34;: {
+            &#39;Figure&#39;: {
+#                &#39;toolbar_location&#39;: None,
+                &#34;outline_line_width&#34;: 0,
+                &#34;outline_line_color&#34;: None,
+                &#39;min_border_right&#39;: 10,
+                &#39;border_fill_color&#39;: None,
+                &#39;sizing_mode&#39;: &#39;stretch_width&#39;},
+            &#34;Axis&#34;: {
+                # &#34;major_tick_line_alpha&#34;: 0,
+                &#34;major_tick_line_color&#34;: None,
+                # &#34;minor_tick_line_alpha&#34;: 0,
+                &#34;minor_tick_line_color&#34;: None,
+                # &#34;axis_line_alpha&#34;: 0,
+                &#34;axis_line_color&#34;: None,
+                &#34;major_label_text_color&#34;: theme.COLOR_TEXT,
+                &#34;major_label_text_font&#34;: theme.FONT,
+                &#34;major_label_text_font_size&#34;: theme.FONT_SIZE,
+                &#34;axis_label_standoff&#34;: 10,
+                &#34;axis_label_text_color&#34;: theme.COLOR_TEXT,
+                &#34;axis_label_text_font&#34;: theme.FONT,
+                &#34;axis_label_text_font_size&#34;: theme.FONT_SIZE,
+                &#34;axis_label_text_font_style&#34;: &#34;normal&#34;,
+            },
+            &#34;Plot&#34;: {
+                # &#34;width&#34;: 450,
+                # &#34;height&#34;: 280,
+                &#34;background_fill_color&#34;: theme.COLOR_BACKGROUND,
+            },
+            &#39;Grid&#39;: {
+                &#39;grid_line_color&#39;: theme.COLOR_LINES},
+            &#34;Legend&#34;: {
+                &#34;label_text_font&#34;: theme.FONT,
+                &#34;label_text_font_size&#34;: theme.FONT_SIZE,
+                &#34;spacing&#34;: 2,
+                &#34;label_text_color&#34;: theme.COLOR_TEXT,
+                &#34;border_line_color&#34;: theme.COLOR_LINES,
+                &#34;background_fill_color&#34;: theme.COLOR_BACKGROUND},
+            # &#34;ColorBar&#34;: {
+            #     &#34;title_text_color&#34;: &#34;#5B5B5B&#34;,
+            #     &#34;title_text_font&#34;: &#34;Helvetica&#34;,
+            #     &#34;title_text_font_size&#34;: &#34;1.025em&#34;,
+            #     &#34;title_text_font_style&#34;: &#34;normal&#34;,
+            #     &#34;major_label_text_color&#34;: &#34;#5B5B5B&#34;,
+            #     &#34;major_label_text_font&#34;: &#34;Helvetica&#34;,
+            #     &#34;major_label_text_font_size&#34;: &#34;1.025em&#34;,
+            #     &#34;major_tick_line_alpha&#34;: 0,
+            #     &#34;bar_line_alpha&#34;: 0},
+            &#34;Title&#34;: {
+                &#34;text_color&#34;: theme.COLOR_TEXT,
+                &#34;text_font&#34;: theme.FONT,
+                &#34;text_font_size&#34;: theme.FONT_SIZE}}}</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="elvis.styling.DARK"><code class="flex name class">
+<span>class <span class="ident">DARK</span></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DARK():
+    COLOR_LINES = &#34;#3c4033&#34; #272822&#34;
+    COLOR_BACKGROUND = None
+    COLOR_TEXT = &#34;#aaaaaa&#34;
+    FONT = &#34;Helvetica&#34;
+    FONT_SIZE = &#34;1.2em&#34;</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="elvis.styling.DARK.COLOR_BACKGROUND"><code class="name">var <span class="ident">COLOR_BACKGROUND</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="elvis.styling.DARK.COLOR_LINES"><code class="name">var <span class="ident">COLOR_LINES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="elvis.styling.DARK.COLOR_TEXT"><code class="name">var <span class="ident">COLOR_TEXT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="elvis.styling.DARK.FONT"><code class="name">var <span class="ident">FONT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="elvis.styling.DARK.FONT_SIZE"><code class="name">var <span class="ident">FONT_SIZE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="elvis.styling.LIGHT"><code class="flex name class">
+<span>class <span class="ident">LIGHT</span></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LIGHT():
+    COLOR_LINES = &#34;#ffffff&#34;
+    COLOR_BACKGROUND = &#34;#f3f4f2&#34;
+    COLOR_TEXT = &#34;#6B6B6B&#34;
+    FONT = &#34;Helvetica&#34;
+    FONT_SIZE = &#34;1.2em&#34;</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="elvis.styling.LIGHT.COLOR_BACKGROUND"><code class="name">var <span class="ident">COLOR_BACKGROUND</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="elvis.styling.LIGHT.COLOR_LINES"><code class="name">var <span class="ident">COLOR_LINES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="elvis.styling.LIGHT.COLOR_TEXT"><code class="name">var <span class="ident">COLOR_TEXT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="elvis.styling.LIGHT.FONT"><code class="name">var <span class="ident">FONT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="elvis.styling.LIGHT.FONT_SIZE"><code class="name">var <span class="ident">FONT_SIZE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="elvis" href="index.html">elvis</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="elvis.styling.Bokeh" href="#elvis.styling.Bokeh">Bokeh</a></code></h4>
+<ul class="two-column">
+<li><code><a title="elvis.styling.Bokeh.DEFAULT_PLOT_OPTS" href="#elvis.styling.Bokeh.DEFAULT_PLOT_OPTS">DEFAULT_PLOT_OPTS</a></code></li>
+<li><code><a title="elvis.styling.Bokeh.DEFAULT_POINT_OPTS" href="#elvis.styling.Bokeh.DEFAULT_POINT_OPTS">DEFAULT_POINT_OPTS</a></code></li>
+<li><code><a title="elvis.styling.Bokeh.curve_defaults" href="#elvis.styling.Bokeh.curve_defaults">curve_defaults</a></code></li>
+<li><code><a title="elvis.styling.Bokeh.point_defaults" href="#elvis.styling.Bokeh.point_defaults">point_defaults</a></code></li>
+<li><code><a title="elvis.styling.Bokeh.set_elvis_style" href="#elvis.styling.Bokeh.set_elvis_style">set_elvis_style</a></code></li>
+<li><code><a title="elvis.styling.Bokeh.style" href="#elvis.styling.Bokeh.style">style</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="elvis.styling.DARK" href="#elvis.styling.DARK">DARK</a></code></h4>
+<ul class="">
+<li><code><a title="elvis.styling.DARK.COLOR_BACKGROUND" href="#elvis.styling.DARK.COLOR_BACKGROUND">COLOR_BACKGROUND</a></code></li>
+<li><code><a title="elvis.styling.DARK.COLOR_LINES" href="#elvis.styling.DARK.COLOR_LINES">COLOR_LINES</a></code></li>
+<li><code><a title="elvis.styling.DARK.COLOR_TEXT" href="#elvis.styling.DARK.COLOR_TEXT">COLOR_TEXT</a></code></li>
+<li><code><a title="elvis.styling.DARK.FONT" href="#elvis.styling.DARK.FONT">FONT</a></code></li>
+<li><code><a title="elvis.styling.DARK.FONT_SIZE" href="#elvis.styling.DARK.FONT_SIZE">FONT_SIZE</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="elvis.styling.LIGHT" href="#elvis.styling.LIGHT">LIGHT</a></code></h4>
+<ul class="">
+<li><code><a title="elvis.styling.LIGHT.COLOR_BACKGROUND" href="#elvis.styling.LIGHT.COLOR_BACKGROUND">COLOR_BACKGROUND</a></code></li>
+<li><code><a title="elvis.styling.LIGHT.COLOR_LINES" href="#elvis.styling.LIGHT.COLOR_LINES">COLOR_LINES</a></code></li>
+<li><code><a title="elvis.styling.LIGHT.COLOR_TEXT" href="#elvis.styling.LIGHT.COLOR_TEXT">COLOR_TEXT</a></code></li>
+<li><code><a title="elvis.styling.LIGHT.FONT" href="#elvis.styling.LIGHT.FONT">FONT</a></code></li>
+<li><code><a title="elvis.styling.LIGHT.FONT_SIZE" href="#elvis.styling.LIGHT.FONT_SIZE">FONT_SIZE</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>
