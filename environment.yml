@@ -1,0 +1,13 @@
+name: elvis
+channels:
+  - defaults
+  - conda-forge
+
+dependencies:
+  - python=3.8.0
+  - numpy=1.18.1
+  - panel=0.9.5
+
+
+prefix: C:\ProgramData\Anaconda3\envs\elvis
+

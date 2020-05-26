@@ -1,0 +1,81 @@
+.bk {
+    padding: 0px !important;
+    margin-left: 0px !important;
+}
+
+.bk-input {
+    color: #6ebd9a;
+    font-family: "Lucida Console", sans-serif;
+    font-size: 16px !important;
+    width: 150px !important;
+    border-radius: 2px !important;
+    padding: 2px !important;
+    padding-left: 5px !important;
+}
+
+.bk-btn-default {
+    height: 30px !important;
+    width: 150px !important;
+    border-radius: 2px !important;
+    font-size: 16px !important;
+    background-color: #6ebd9a !important;
+    color: #fff !important;
+    border: 0px !important;
+    margin-left: 0px !important;
+}
+
+.bk-btn-default:hover {
+    background-color: #30ad7f !important;
+}
+
+.bk-input:hover {
+  border-color: #666 !important;
+}
+
+label {
+    cursor: default !important;
+    font-size: 14px !important;
+    color: #555 !important;
+}
+
+.kpi {
+    font-weight: normal;
+    font-size: 14px;
+    padding: 0px;
+    padding-left: 5px;
+    white-space: nowrap;
+    color: #555;
+    display: inline-block;
+    line-height: 1.00;
+}
+
+.bk-input-group {
+    margin-left: 10px !important;
+}
+
+.kpi-div{
+    border-left: 3px #6ebd9a solid;
+    min-width: 150px;
+    margin-left: 10px !important;
+}
+
+.kpi-value {
+    color: #6ebd9a;
+    font-family: "Lucida Console", sans-serif;
+    font-size: 18px !important;
+    vertical-align: bottom !important;;
+    margin-bottom: -3px !important;;
+    margin-top: 3px !important;;
+ }
+
+.kpi-units {
+    white-space: nowrap;
+    font-family: "Lucida Console", sans-serif;
+    font-size: 14px !important;
+    color: #999;
+    padding-left: 2px;
+}
+
+.kpi-trip {
+    color: #F00;
+}
