@@ -1,0 +1,59 @@
+.bk-input {
+    font-family: "Lucida Console", sans-serif;
+    font-size: 16px !important;
+    border-radius: 2px !important;
+    padding: 2px !important;
+    padding-left: 5px !important;
+    /*width: 150px !important; */
+}
+
+.bk-btn-default {
+    /*width: 150px !important; */
+    height: 30px !important;
+    border-radius: 2px !important;
+    font-size: 16px !important;
+    font-weight: bold;
+}
+
+label {
+    cursor: default !important;
+    font-size: 14px !important;
+}
+
+.kpi {
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    padding: 0px;
+    padding-left: 5px;
+    white-space: nowrap;
+    display: inline-block;
+    line-height: 1.00;
+}
+
+.kpi-div{
+    min-width: 150px;
+    margin-left: 10px !important;
+}
+
+.kpi-value {
+    font-weight: normal;
+    color: #f6246c;
+    font-family: "Lucida Console", sans-serif;
+    font-size: 18px !important;
+    vertical-align: bottom !important;;
+    margin-bottom: -3px !important;;
+    margin-top: 3px !important;;
+ }
+
+.kpi-units {
+    font-weight: normal;
+    white-space: nowrap;
+    font-family: "Lucida Console", sans-serif;
+    font-size: 14px !important;
+    padding-left: 2px;
+    color: #888;
+}
+
+.kpi-trip {
+    color: #F00;
+}
