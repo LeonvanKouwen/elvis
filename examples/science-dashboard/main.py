@@ -86,8 +86,6 @@ gpanel.compose(
 
 if __name__ == "__main__":
     gpanel.serve(title="Science Dashboard", show=False, port=5051)
-    # Use the code below to run from the command line
-    #gpanel.app.servable()
 
 
 

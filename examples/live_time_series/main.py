@@ -59,7 +59,7 @@ class TimeControlPanel(param.Parameterized):
         self.dataobj = dataobj
         self.plotobj = plotobj
 
-        self.reset = pn.widgets.Button(name='reset', value=False, width=150)
+        self.reset = pn.widgets.Button(name='reset', value=False)
         self.sim_time = elvis.widgets.KPI(title="Simulation Clock", units="s")
         self.achieved_sample_rate = elvis.widgets.KPI(title="Actual Sample rate", units="Hz")
         self.requested_sample_rate = elvis.widgets.KPI(title="Requested sample rate",
@@ -109,7 +109,7 @@ control_panel = TimeControlPanel(live.computation, live.plot)
 gpanel = elvis.GoldenPanel(theme=THEME)
 gpanel.compose(
     gpanel.row(
-        gpanel.view(control_panel.view(), 'Controls', width=210, scrollable=False),
+        gpanel.view(control_panel.view(), 'Controls', width=320, scrollable=False),
         gpanel.stack(
             gpanel.view(live.view(), 'Live', scrollable=False),
             gpanel.view(pn.pane.Markdown("..."), 'Some Tab'),
@@ -119,8 +119,6 @@ gpanel.compose(
 if __name__ == "__main__":
     gpanel.serve(title="Time Series", show=False, port=5050)
 
-    # Use the code below to run from the command line
-    # gpanel.app.servable()
 
 
 

@@ -15,17 +15,6 @@ class GoldenPanel:
     colum, and panel methods. Do not create panels without adding them to
     the composition string.
     """
-    CSS_BASE = ['assets\goldenlayout-base.css',
-                'assets\panel-customizations.css']
-
-    CSS_THEME = {'light': ['assets\goldenlayout-elvis-light.css',
-                           'assets\panel-customizations-light.css'],
-                  'dark': ['assets\goldenlayout-elvis-dark.css',
-                           'assets\panel-customizations-dark.css']}
-
-
-    JS_FILES = {'jquery': 'assets\js\jquery-1.11.1.min.js',
-                'goldenlayout': 'assets\js\goldenlayout.min.js'}
 
     def __init__(self, title="Elvis", theme='light'):
         """
@@ -36,16 +25,35 @@ class GoldenPanel:
         self.panels = {}
         self.counter = 0
         self.app = None
-        css_files = self.CSS_BASE + self.CSS_THEME[theme]
-        pn.extension(css_files=css_files, js_files=self.JS_FILES)
+        self.theme = theme
+
+    def _get_assets(self, root, theme):
+        css_base = [root + 'assets\goldenlayout-base.css',
+                    root + 'assets\panel-customizations.css']
+        css_theme = {'light': [root + 'assets\goldenlayout-elvis-light.css',
+                               root + 'assets\panel-customizations-light.css'],
+                      'dark': [root + 'assets\goldenlayout-elvis-dark.css',
+                               root + 'assets\panel-customizations-dark.css']}
+        js_files = {'jquery': root + 'assets\js\jquery-1.11.1.min.js',
+                    'goldenlayout': root + 'assets\js\goldenlayout.min.js'}
+        css_files = css_base + css_theme[theme]
+        return css_files, js_files
 
     def serve(self, static_dirs=None, **kwargs):
-        """ Wrapper for pn.serve, with the inclusion of the required static assets. """
+        """ Wrapper for pn.serve, with the inclusion of the required static assets."""
         static_dirs = {} if static_dirs is None else static_dirs
         assets_elvis = {'assets': os.path.abspath(
             os.path.join(os.path.dirname(__file__), os.pardir, 'assets'))}
         kwargs.setdefault('title', self.title)
+        css, js = self._get_assets("", self.theme)
+        pn.extension(css_files=css, js_files=js)
         return pn.serve(self.app, static_dirs={**assets_elvis, **static_dirs}, **kwargs)
+
+    def servable(self):
+        """ Wrapper for servable, with the inclusion of the required static assets."""
+        css, js = self._get_assets("elvis\\", self.theme)
+        pn.extension(css_files=css, js_files=js)
+        self.app.servable(title=self.title)
 
     def compose(self, golden_layout_string):
         """
