@@ -2,7 +2,7 @@
 
 * Combining holoviz panel with the golden-panel layout.
 * Author: Leon van Kouwen, lvankouwen@gmail.com
-* Last updated: 26-5-2020
+* Last updated: 28-5-2020
 * Version 0.1.0
 
 ## About elvis
@@ -91,6 +91,7 @@ This package is just a very thin layer around the holoviz framework and the gold
 * [Holoviz param](https://awesome-panel.org/)
 * [Holoviz holoviews](https://holoviews.org/)
 * [Golden-layout](https://golden-layout.com/)
+
 A good comparison with other frameworks can be found [here](https://panel.holoviz.org/Comparisons.html).
 
 As a plotting backend I prefer Bokeh, and it is currently the only one that is themed. 
