@@ -57,23 +57,26 @@ At present it is required do use a developers install of panel. Follow the instr
 [here](https://panel.holoviz.org/developer_guide/index.html) and checkout in the branch
 static_serve. Use the panel_dev conda environment. Note that this is only required temporarily,
 as serving static assets will be included in the standard panel distribution at some point.
+The panel version in which elvis is tested is:
 
 * panel 0.10.0a2.post9+g643033f dev_0
 
-It is possible as a work-around to test this package without the developers install. Create a main.py (or move one of the examples) in the root
-folder of the repository. Replace the default way of serving from the code
+The following work-around could be useful to test this package without the developers install. 
+Create a main.py (or move one of the examples) in the root folder of the repository.
+Replace the default way of serving from the code
 
     gpanel.serve()
 
 With
     
-    gpanel.app.servable()
+    gpanel.servable()
 
 Now from the command line one directory level higher run:
 
     panel serve elvis
     
-In this case it is not needed to pip install elvis.
+In this case it is not needed to pip install elvis. WARNING: With some versions of bokeh + panel there seems to
+be some problem with serving the .js assets, so this solution might not work. 
 
 ### Examples
 To get started with some examples look at the examples folder.
@@ -96,6 +99,9 @@ As a plotting backend I prefer Bokeh, and it is currently the only one that is t
 For demonstrations and more additions to panel, visit
 * [Awesome panel](https://awesome-panel.org/)
 
+Combining panel with the golden-layout was inspired by the 
+[VTKSlicer](https://panel.holoviz.org/gallery/demos/VTKSlicer.html#demos-gallery-vtkslicer) dashboard.
+
 For bugs and problems with the code in this package, please raise a github issue. For more general questions, the
 [holoviz discourse](https://discourse.holoviz.org/) can be used. 
 
@@ -107,9 +113,12 @@ For bugs and problems with the code in this package, please raise a github issue
 * Add docstrings
 * The css is a mess; needs to be cleaned up
 * Prevent overlapping hover pop-ups in Bokeh plots
+* Bokeh themes for other plot types
+* Address this "WARNING:param.reset: Setting non-parameter attribute value=False using a mechanism intended only for parameters"
 
 #### Nice-to-haves
 * Remove the 5px left-margin when generating widgets with param.
 * A widget that shows stdout
 * A global message widget
 * Reset the server from a button in the browser
+* Save an elvis panel as static html

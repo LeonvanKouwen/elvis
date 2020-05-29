@@ -7,3 +7,5 @@ from .goldenpanel import GoldenPanel
 from .styling import Bokeh
 from .streaming import LiveComputation, LivePlot
 import elvis.widgets
+from .constants import LayoutTheme
+

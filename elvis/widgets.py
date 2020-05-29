@@ -3,7 +3,6 @@ Custom widgets.
 """
 
 
-
 import panel as pn
 import param
 from tornado.ioloop import PeriodicCallback
@@ -14,7 +13,7 @@ class KPI(param.Parameterized):
     """
     Key Performance Indicator.
     Widget that shows important numbers (KPI's) more clearly than standard numbers.
-    Specify trip levels to mark the number red when the value no longer
+    Specify trip levels to mark the number red when the value exceeds these levels.
     """
     value = param.Number(default=0.0)
 

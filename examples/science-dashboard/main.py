@@ -6,8 +6,6 @@ import param
 import holoviews as hv
 from bokeh.models import HoverTool
 
-THEME = 'dark'
-elvis.Bokeh.set_elvis_style(theme=THEME)
 
 class ScienceModel(param.Parameterized):
     """ An utter nonsense model to test stuff """
@@ -70,7 +68,7 @@ panel_4a = model.view_power
 panel_4b = pn.pane.Markdown(''.join(str(x) + '\n ' for x in range(1000)))
 panel_4c = pn.pane.Markdown("##Empty")
 
-gpanel = elvis.GoldenPanel(theme=THEME)
+gpanel = elvis.GoldenPanel(theme=elvis.LayoutTheme.dark)
 gpanel.compose(
     gpanel.column(
         gpanel.header("Elvis Example // Scientific Dashboard"),
@@ -83,9 +81,7 @@ gpanel.compose(
             gpanel.view(panel_4b, 'Long Text'),
             gpanel.view(panel_4c, 'Empty'))))
 
-
-if __name__ == "__main__":
-    gpanel.serve(title="Science Dashboard", show=False, port=5051)
+gpanel.serve(title="Science Dashboard", show=False, port=5051)
 
 
 

@@ -4,6 +4,14 @@ Elvis main module: the golden-layout panel creator.
 
 import panel as pn
 import os
+from .styling import Bokeh
+from enum import Enum
+from .constants import LayoutTheme
+
+class Block(Enum):
+    stack = 'stack'
+    row = 'row'
+    column = 'column'
 
 
 class GoldenPanel:
@@ -14,25 +22,31 @@ class GoldenPanel:
     Only create golden panels in one go; use one compose method and nest the stack, row,
     colum, and panel methods. Do not create panels without adding them to
     the composition string.
+
+    Note that the Bokeh is automatically set to a corresponding theme. Changes
+    can be made after constructing the object.
     """
 
-    def __init__(self, title="Elvis", theme='light'):
+    def __init__(self, title="Elvis", theme: LayoutTheme=LayoutTheme.dark):
         """
+
         :param theme: Choose between 'light' and 'dark'.
         :param title: Title for the browser tab.
+
         """
         self.title = title
+        self.theme = theme
         self.panels = {}
         self.counter = 0
         self.app = None
-        self.theme = theme
+        Bokeh.set_elvis_style(theme=theme)
 
-    def _get_assets(self, root, theme):
+    def _get_assets(self, root: str, theme: LayoutTheme):
         css_base = [root + 'assets\goldenlayout-base.css',
                     root + 'assets\panel-customizations.css']
-        css_theme = {'light': [root + 'assets\goldenlayout-elvis-light.css',
+        css_theme = {LayoutTheme.light: [root + 'assets\goldenlayout-elvis-light.css',
                                root + 'assets\panel-customizations-light.css'],
-                      'dark': [root + 'assets\goldenlayout-elvis-dark.css',
+                      LayoutTheme.dark: [root + 'assets\goldenlayout-elvis-dark.css',
                                root + 'assets\panel-customizations-dark.css']}
         js_files = {'jquery': root + 'assets\js\jquery-1.11.1.min.js',
                     'goldenlayout': root + 'assets\js\goldenlayout.min.js'}
@@ -49,34 +63,40 @@ class GoldenPanel:
         pn.extension(css_files=css, js_files=js)
         return pn.serve(self.app, static_dirs={**assets_elvis, **static_dirs}, **kwargs)
 
-    def servable(self):
+    def servable(self) -> None:
         """ Wrapper for servable, with the inclusion of the required static assets."""
         css, js = self._get_assets("elvis\\", self.theme)
         pn.extension(css_files=css, js_files=js)
         self.app.servable(title=self.title)
 
-    def compose(self, golden_layout_string):
+    def compose(self, golden_layout: str) -> None:
         """
         Creates a servable template from a golden layout js code string.
         :param golden_layout_string: Result of nesting stacks, columns, rows, and panels
                                      using the methods in this class.
         """
-        template = ClientSideCodeStrings.JINJA2_BASE % golden_layout_string
+        template = ClientSideCodeStrings.JINJA2_BASE % golden_layout
         self.app = pn.Template(template=template)
         for panel_ID, panel in self.panels.items():
             self.app.add_panel(panel_ID, panel)
 
-    def view(self, view, title=None, width=None, height=None, scrollable=True):
+    def view(self, view,
+             title: str=None,
+             width: int=None,
+             height: int=None,
+             scrollable=True) -> str:
         """
         Adds a viewable panel.
         :param view: The panel to show in this golden layout sub section.
         :param title: The text to show at the top of the panel.
         :param width: Initial width.
         :param height: Initial height.
+        :param scrollable: if True, the the view will get scroll bars, if the content is larger
+                           than the panel size.
         """
 
         # We need to register every panel with a unique name such that after
-        # composing the jinja2 template, we can add them (see compose function).
+        # composing the jinja2 template, we can perform add_panel (see compose function).
         self.counter = self.counter + 1
         panel_ID = "panel_" + str(self.counter)
         self.panels[panel_ID] = pn.panel(view, sizing_mode='stretch_both')
@@ -87,30 +107,30 @@ class GoldenPanel:
         settings = title_str + height_str + width_str + scroll_str
         return ClientSideCodeStrings.VIEW % (panel_ID, settings)
 
-    def header(self, header, height=90):
+    def header(self, header: str, height: int=90) -> str:
         """ Convenience function to make a title style view."""
         return self.view(pn.pane.HTML(f"<div class='title'>{header}</div>",
                                       sizing_mode='stretch_width'), height=height)
 
-    def _block(self, *args, type='stack'):
+    def _block(self, *args: str, type: Block=Block.stack) -> str:
         """
         Creates nestable js code strings. Note that 'stack', 'colum' and 'row' are the
         strings dictated by the golden layout js code.
         """
         content = ''.join(arg for arg in args)
-        return ClientSideCodeStrings.NESTABLE % (type, content)
+        return ClientSideCodeStrings.NESTABLE % (type.name, content)
 
-    def stack(self, *args):
-        """ Adds a 'tab' element."""
-        return self._block(*args, type='stack')
+    def stack(self, *args: str) -> str:
+        """ Adds a 'tab' element. Every argument should be a view or another nestable (stack, column, row)."""
+        return self._block(*args, type=Block.stack)
 
-    def column(self, *args):
-        """ Vertically aligned panels"""
-        return self._block(*args, type='column')
+    def column(self, *args: str) -> str:
+        """ Vertically aligned panels. Every argument should be a view or another nestable (stack, column, row)."""
+        return self._block(*args, type=Block.column)
 
-    def row(self, *args):
-        """ Horizontally aligned panels"""
-        return self._block(*args, type='row')
+    def row(self, *args: str) -> str:
+        """ Horizontally aligned panels. Every argument should be a view or another nestable (stack, column, row)."""
+        return self._block(*args, type=Block.row)
 
 
 class ClientSideCodeStrings:
@@ -118,20 +138,16 @@ class ClientSideCodeStrings:
 
     JINJA2_BASE = \
         """
-
         {%% extends base %%}
-
         {%% block postamble %%}
-       
-        <head> <link rel="icon"  href="/assets/favicon.ico"  type="image/x-icon"/>
-        
+            <head> <link rel="icon"  href="/assets/favicon.ico"  type="image/x-icon"/>
         {%% endblock %%}
         
         <!-- goes in body -->
         {%% block contents %%}
                    
         <script type="text/javascript">
-
+        
         var config = 
         {
             settings: 

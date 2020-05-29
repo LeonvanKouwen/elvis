@@ -8,21 +8,21 @@ import param
 from tornado import gen
 
 
-THEME = 'light'
-elvis.Bokeh.set_elvis_style(theme=THEME)
-
-
 class Live():
+    """ Some trigonometry to test a live streaming panel."""
+
+    KPI_UPDATE_TIME_MS = 200
+    KPI_QUEUE_SIZE = 50
 
     def __init__(self):
         self.plot = elvis.streaming.LivePlot(num_curves=len(self.data_generator(.0)))
         self.computation = elvis.streaming.LiveComputation(self.data_generator)
         self.computation.register_queue(self.plot.data_queue)
-        self.kpi_queue = queue.Queue(maxsize=50)
+        self.kpi_queue = queue.Queue(maxsize=self.KPI_QUEUE_SIZE)
         self.computation.register_queue(self.kpi_queue)
         self.kpi_max = elvis.widgets.KPI(title="max", value=0.0, units="Volt")
         self.kpi_rms = elvis.widgets.KPI(title="RMS", value=0.0, units="Volt")
-        PeriodicCallback(self.update_kpis, 200).start()
+        PeriodicCallback(self.update_kpis, self.KPI_UPDATE_TIME_MS).start()
 
     @staticmethod
     def data_generator(t):
@@ -33,11 +33,11 @@ class Live():
     def update_kpis(self):
         data = list(self.kpi_queue.queue)
         y_combined = np.squeeze(np.array([d[1] for d in data]))
-        #print(y_combined)
         try:
             self.kpi_max.value = np.max(y_combined)
             self.kpi_rms.value = np.sqrt(np.mean(y_combined ** 2) / len(y_combined))
         except ValueError:
+            # The calculation can fail when for example the buffer is empty.
             pass
 
     def view(self):
@@ -48,6 +48,10 @@ class Live():
 
 
 class TimeControlPanel(param.Parameterized):
+    """
+    Controls for live streaming.
+    NOTE: reset button doesn't work (wip).
+    """
 
     is_running = param.Boolean(default=False, label=' Play / Pause')  # \u25b6
     sample_time = param.Number(default=.20, label="Sample Time (s)")
@@ -106,7 +110,7 @@ class TimeControlPanel(param.Parameterized):
 live = Live()
 control_panel = TimeControlPanel(live.computation, live.plot)
 
-gpanel = elvis.GoldenPanel(theme=THEME)
+gpanel = elvis.GoldenPanel(theme=elvis.LayoutTheme.light)
 gpanel.compose(
     gpanel.row(
         gpanel.view(control_panel.view(), 'Controls', width=320, scrollable=False),
@@ -115,9 +119,9 @@ gpanel.compose(
             gpanel.view(pn.pane.Markdown("..."), 'Some Tab'),
             gpanel.view(pn.pane.Markdown("..."), 'Another Tab'))))
 
+gpanel.serve(title="Time Series", show=False, port=5050)
 
-if __name__ == "__main__":
-    gpanel.serve(title="Time Series", show=False, port=5050)
+
 
 
 
