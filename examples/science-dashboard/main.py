@@ -68,7 +68,7 @@ panel_4a = model.view_power
 panel_4b = pn.pane.Markdown(''.join(str(x) + '\n ' for x in range(1000)))
 panel_4c = pn.pane.Markdown("##Empty")
 
-gpanel = elvis.GoldenPanel(theme=elvis.LayoutTheme.dark)
+gpanel = elvis.GoldenPanel(theme=elvis.LayoutTheme.DARK)
 gpanel.compose(
     gpanel.column(
         gpanel.header("Elvis Example // Scientific Dashboard"),
@@ -82,6 +82,8 @@ gpanel.compose(
             gpanel.view(panel_4c, 'Empty'))))
 
 gpanel.serve(title="Science Dashboard", show=False, port=5051)
+
+
 
 
 

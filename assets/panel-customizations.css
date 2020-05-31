@@ -1,5 +1,8 @@
+.bk-logo {
+    display:none !important;
+}
+
 .bk-input {
-    font-family: "Lucida Console", sans-serif;
     font-size: 16px !important;
     border-radius: 2px !important;
     padding: 2px !important;
@@ -32,24 +35,24 @@ label {
 
 .kpi-div{
     min-width: 150px;
-    margin-left: 10px !important;
+    margin-left: 0px;
 }
 
 .kpi-value {
     font-weight: normal;
     color: #f6246c;
     font-family: "Lucida Console", sans-serif;
-    font-size: 18px !important;
-    vertical-align: bottom !important;;
-    margin-bottom: -3px !important;;
-    margin-top: 3px !important;;
+    font-size: 18px;
+    vertical-align: bottom;
+    margin-bottom: -3px;
+    margin-top: 3px;
  }
 
 .kpi-units {
     font-weight: normal;
     white-space: nowrap;
     font-family: "Lucida Console", sans-serif;
-    font-size: 14px !important;
+    font-size: 14px;
     padding-left: 2px;
     color: #888;
 }

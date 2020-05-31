@@ -27,7 +27,7 @@ class GoldenPanel:
     can be made after constructing the object.
     """
 
-    def __init__(self, title="Elvis", theme: LayoutTheme=LayoutTheme.dark):
+    def __init__(self, title="Elvis", theme: LayoutTheme=LayoutTheme.DARK):
         """
 
         :param theme: Choose between 'light' and 'dark'.
@@ -39,19 +39,24 @@ class GoldenPanel:
         self.panels = {}
         self.counter = 0
         self.app = None
+        pn.extension()
         Bokeh.set_elvis_style(theme=theme)
 
-    def _get_assets(self, root: str, theme: LayoutTheme):
+    def _set_assets(self, root: str, theme: LayoutTheme):
         css_base = [root + 'assets\goldenlayout-base.css',
                     root + 'assets\panel-customizations.css']
-        css_theme = {LayoutTheme.light: [root + 'assets\goldenlayout-elvis-light.css',
+        css_theme = {LayoutTheme.LIGHT: [root + 'assets\goldenlayout-elvis-light.css',
                                root + 'assets\panel-customizations-light.css'],
-                      LayoutTheme.dark: [root + 'assets\goldenlayout-elvis-dark.css',
+                      LayoutTheme.DARK: [root + 'assets\goldenlayout-elvis-dark.css',
                                root + 'assets\panel-customizations-dark.css']}
         js_files = {'jquery': root + 'assets\js\jquery-1.11.1.min.js',
                     'goldenlayout': root + 'assets\js\goldenlayout.min.js'}
+        # js_files = {'jquery': 'https://code.jquery.com/jquery-1.11.1.min.js',
+        #             'goldenlayout': 'https://golden-layout.com/files/latest/js/goldenlayout.min.js'}
         css_files = css_base + css_theme[theme]
-        return css_files, js_files
+        pn.config.js_files =  js_files
+        pn.config.css_files = css_files
+
 
     def serve(self, static_dirs=None, **kwargs):
         """ Wrapper for pn.serve, with the inclusion of the required static assets."""
@@ -59,14 +64,12 @@ class GoldenPanel:
         assets_elvis = {'assets': os.path.abspath(
             os.path.join(os.path.dirname(__file__), os.pardir, 'assets'))}
         kwargs.setdefault('title', self.title)
-        css, js = self._get_assets("", self.theme)
-        pn.extension(css_files=css, js_files=js)
+        self._set_assets("", self.theme)
         return pn.serve(self.app, static_dirs={**assets_elvis, **static_dirs}, **kwargs)
 
     def servable(self) -> None:
         """ Wrapper for servable, with the inclusion of the required static assets."""
-        css, js = self._get_assets("elvis\\", self.theme)
-        pn.extension(css_files=css, js_files=js)
+        self._set_assets("elvis\\", self.theme)
         self.app.servable(title=self.title)
 
     def compose(self, golden_layout: str) -> None:
@@ -147,6 +150,7 @@ class ClientSideCodeStrings:
         {%% block contents %%}
                    
         <script type="text/javascript">
+        
         
         var config = 
         {

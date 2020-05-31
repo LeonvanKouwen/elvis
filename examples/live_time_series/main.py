@@ -110,7 +110,7 @@ class TimeControlPanel(param.Parameterized):
 live = Live()
 control_panel = TimeControlPanel(live.computation, live.plot)
 
-gpanel = elvis.GoldenPanel(theme=elvis.LayoutTheme.light)
+gpanel = elvis.GoldenPanel(theme=elvis.LayoutTheme.LIGHT)
 gpanel.compose(
     gpanel.row(
         gpanel.view(control_panel.view(), 'Controls', width=320, scrollable=False),

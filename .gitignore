@@ -1,0 +1,6 @@
+.idea/*
+elvis/__pycache__/*
+*.iml
+
+*.html
+*.html
