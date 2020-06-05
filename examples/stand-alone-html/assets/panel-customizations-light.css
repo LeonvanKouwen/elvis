@@ -1,0 +1,38 @@
+.bk-input {
+    color: #6ebd9a;
+}
+
+label {
+    color: #555 !important;
+}
+
+.bk-btn-default {
+    background-color: #6ebd9a !important;
+    color: #fff !important;
+    border: 0px !important;
+}
+
+.bk-btn-default:hover {
+    background-color: #30ad7f !important;
+}
+
+.bk-input:hover {
+  border-color: #666 !important;
+}
+
+.bk-input-group {
+    margin-left: 10px !important;
+}
+
+.kpi-div{
+    border-left: 3px #6ebd9a solid;
+}
+
+.kpi-value {
+    color: #6ebd9a;
+ }
+
+.kpi-units {
+    color: #999;
+}
+

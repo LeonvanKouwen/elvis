@@ -4,3 +4,4 @@ elvis/__pycache__/*
 
 *.html
 *.html
+examples/live_time_series/__pycache__/uiutils.cpython-37.pyc

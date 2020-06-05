@@ -1,0 +1,62 @@
+.bk-logo {
+    display:none !important;
+}
+
+.bk-input {
+    font-size: 16px !important;
+    border-radius: 2px !important;
+    padding: 2px !important;
+    padding-left: 5px !important;
+    /*width: 150px !important; */
+}
+
+.bk-btn-default {
+    /*width: 150px !important; */
+    height: 30px !important;
+    border-radius: 2px !important;
+    font-size: 16px !important;
+    font-weight: bold;
+}
+
+label {
+    cursor: default !important;
+    font-size: 14px !important;
+}
+
+.kpi {
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    padding: 0px;
+    padding-left: 5px;
+    white-space: nowrap;
+    display: inline-block;
+    line-height: 1.00;
+}
+
+.kpi-div{
+    min-width: 150px;
+    margin-left: 0px;
+}
+
+.kpi-value {
+    font-weight: normal;
+    color: #f6246c;
+    font-family: "Lucida Console", sans-serif;
+    font-size: 18px;
+    vertical-align: bottom;
+    margin-bottom: -3px;
+    margin-top: 3px;
+ }
+
+.kpi-units {
+    font-weight: normal;
+    white-space: nowrap;
+    font-family: "Lucida Console", sans-serif;
+    font-size: 14px;
+    padding-left: 2px;
+    color: #888;
+}
+
+.kpi-trip {
+    color: #F00;
+}

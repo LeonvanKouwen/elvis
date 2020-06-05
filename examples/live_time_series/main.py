@@ -119,7 +119,14 @@ gpanel.compose(
             gpanel.view(pn.pane.Markdown("..."), 'Some Tab'),
             gpanel.view(pn.pane.Markdown("..."), 'Another Tab'))))
 
-gpanel.serve(title="Time Series", show=False, port=5050)
+
+from bokeh.embed import components, file_html
+from bokeh.io import show
+
+script, html = components(gpanel.app)
+
+# gpanel.save_to_html()
+# gpanel.serve(title="Time Series", show=False, port=5050)
 
 
 

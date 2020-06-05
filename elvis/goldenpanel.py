@@ -8,6 +8,7 @@ from .styling import Bokeh
 from enum import Enum
 from .constants import LayoutTheme
 
+
 class Block(Enum):
     stack = 'stack'
     row = 'row'
@@ -29,10 +30,8 @@ class GoldenPanel:
 
     def __init__(self, title="Elvis", theme: LayoutTheme=LayoutTheme.DARK):
         """
-
-        :param theme: Choose between 'light' and 'dark'.
+        :param theme: Choose between 'LayoutTheme.DARK' and 'LayoutTheme.LIGHT'.
         :param title: Title for the browser tab.
-
         """
         self.title = title
         self.theme = theme
@@ -56,7 +55,6 @@ class GoldenPanel:
         css_files = css_base + css_theme[theme]
         pn.config.js_files =  js_files
         pn.config.css_files = css_files
-
 
     def serve(self, static_dirs=None, **kwargs):
         """ Wrapper for pn.serve, with the inclusion of the required static assets."""
@@ -110,6 +108,17 @@ class GoldenPanel:
         settings = title_str + height_str + width_str + scroll_str
         return ClientSideCodeStrings.VIEW % (panel_ID, settings)
 
+    # def save_to_html(self):
+    #     from bokeh.resources import INLINE
+    #     for name, panel in self.panels.items():
+    #         panel = pn.panel(panel, background="#444444")
+    #         panel.save(name + '.html', resources=INLINE)
+
+    def save_to_html(self):
+        from bokeh.resources import INLINE
+        self.app.save('index.html', resources=INLINE)
+
+
     def header(self, header: str, height: int=90) -> str:
         """ Convenience function to make a title style view."""
         return self.view(pn.pane.HTML(f"<div class='title'>{header}</div>",
@@ -143,14 +152,21 @@ class ClientSideCodeStrings:
         """
         {%% extends base %%}
         {%% block postamble %%}
-            <head> <link rel="icon"  href="/assets/favicon.ico"  type="image/x-icon"/>
+        <link rel="icon"  href="/assets/favicon.ico"  type="image/x-icon"/>
+        <link rel="stylesheet" type="text/css" href="assets/goldenlayout-base.css">
+        <link rel="stylesheet" type="text/css" href="assets/goldenlayout-elvis-light.css">
+        <link rel="stylesheet" type="text/css" href="assets/panel-customizations.css">
+        <link rel="stylesheet" type="text/css" href="assets/panel-customizations-light.css">
+        <script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="assets/js/goldenlayout.min.js"></script>
         {%% endblock %%}
         
         <!-- goes in body -->
         {%% block contents %%}
-                   
-        <script type="text/javascript">
         
+                  
+        <script type="text/javascript">
+       
         
         var config = 
         {

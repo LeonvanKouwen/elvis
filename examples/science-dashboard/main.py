@@ -81,6 +81,7 @@ gpanel.compose(
             gpanel.view(panel_4b, 'Long Text'),
             gpanel.view(panel_4c, 'Empty'))))
 
+
 gpanel.serve(title="Science Dashboard", show=False, port=5051)
 
 
