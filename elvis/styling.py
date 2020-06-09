@@ -105,6 +105,7 @@ class Bokeh():
         'line_width': 2,
 #       'toolbar': 'above',
 #       'legend_position': 'right'
+        'responsive': True
     }
 
     DEFAULT_PLOT_OPTS = {
@@ -112,6 +113,17 @@ class Bokeh():
         'line_width': 2,
         'responsive': True
     }
+
+    DEFAULT_BARS_OPTS = {
+        'show_grid': False,
+        'responsive': True,
+    }
+
+    DEFAULT_QUADMESH_OPTS = {
+        'show_grid': False,
+        'responsive': True
+    }
+
 
     @classmethod
     def set_elvis_style(cls, theme: LayoutTheme=LayoutTheme.DARK):
@@ -123,6 +135,8 @@ class Bokeh():
         hv.renderer('bokeh').theme = Theme(json=cls.style(theme))
         cls.curve_defaults()
         cls.points_defaults()
+        cls.bars_defaults()
+        cls.quadmesh_defaults()
 
     @classmethod
     def curve_defaults(cls, **kwargs):
@@ -139,6 +153,22 @@ class Bokeh():
           and set user-specific defaults
           """
         return opts.defaults(opts.Points(**_dict_merge(kwargs, cls.DEFAULT_POINT_OPTS)))
+
+    @classmethod
+    def bars_defaults(cls, **kwargs):
+        """
+          Set defaults for holoviews Points class. Use kwargs to overwrite elvis defaults
+          and set user-specific defaults
+          """
+        return opts.defaults(opts.Bars(**_dict_merge(kwargs, cls.DEFAULT_BARS_OPTS)))
+
+    @classmethod
+    def quadmesh_defaults(cls, **kwargs):
+        """
+          Set defaults for holoviews Points class. Use kwargs to overwrite elvis defaults
+          and set user-specific defaults
+          """
+        return opts.defaults(opts.QuadMesh(**_dict_merge(kwargs, cls.DEFAULT_QUADMESH_OPTS)))
 
 
 def _dict_merge(dominant, recessive):
