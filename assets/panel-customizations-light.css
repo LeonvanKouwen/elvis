@@ -20,8 +20,10 @@ label {
   border-color: #666 !important;
 }
 
-.bk-input-group {
-    margin-left: 10px !important;
+.bk-root .bk-btn:active, .bk-root .bk-btn.bk-active {
+    background-image: none;
+    background-color: #30ad7f !important;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.4);
 }
 
 .kpi-div{

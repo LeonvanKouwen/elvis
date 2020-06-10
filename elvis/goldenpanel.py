@@ -44,6 +44,7 @@ class GoldenPanel:
 
     def _set_assets(self, root: str, theme: LayoutTheme):
         css_base = [root + 'assets\goldenlayout-base.css',
+                    root + 'assets\goldenlayout-elvis.css',
                     root + 'assets\panel-customizations.css']
         css_theme = {LayoutTheme.LIGHT: [root + 'assets\goldenlayout-elvis-light.css',
                                root + 'assets\panel-customizations-light.css'],
@@ -51,12 +52,9 @@ class GoldenPanel:
                                root + 'assets\panel-customizations-dark.css']}
         js_files = {'jquery': root + 'assets\js\jquery-1.11.1.min.js',
                     'goldenlayout': root + 'assets\js\goldenlayout.min.js'}
-        # js_files = {'jquery': 'https://code.jquery.com/jquery-1.11.1.min.js',
-        #             'goldenlayout': 'https://golden-layout.com/files/latest/js/goldenlayout.min.js'}
         css_files = css_base + css_theme[theme]
         pn.config.js_files =  js_files
         pn.config.css_files = css_files
-
 
     def serve(self, static_dirs=None, **kwargs):
         """ Wrapper for pn.serve, with the inclusion of the required static assets."""
