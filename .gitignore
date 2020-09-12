@@ -4,3 +4,5 @@ elvis/__pycache__/*
 
 *.html
 *.html
+elvis.egg-info/dependency_links.txt
+elvis.egg-info/

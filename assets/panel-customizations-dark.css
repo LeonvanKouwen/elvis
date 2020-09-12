@@ -19,18 +19,22 @@
     border: 0px !important  ;
 }
 
-.bk-noUi-connect
-{
+.noUi-connect {
     background-color: #fb961e !important;
 }
 
-.bk-noUi-handle {
-    background:  #272822 !important;
+.noUi-connects
+{
+    background: #272822 !important;
+        border: 1px solid #666 !important;
 }
 
-.bk-noUi-base {
-    background: #272822 !important;
+.noUi-touch-area {
+    background:  #272822 !important;
+    border: 1px solid #666 !important;
 }
+
+
 
 .bk-input:hover {
     border-color: #aaa !important;

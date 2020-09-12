@@ -4,9 +4,10 @@ Elvis main module: the golden-layout panel creator.
 
 import panel as pn
 import os
-from .styling import Bokeh
+from .bokeh import HoloviewsBokeh
 from enum import Enum
-from .constants import LayoutTheme
+from .themes import LayoutTheme
+
 
 class Block(Enum):
     stack = 'stack'
@@ -39,8 +40,6 @@ class GoldenPanel:
         self.panels = {}
         self.counter = 0
         self.app = None
-        pn.extension()
-        Bokeh.set_elvis_style(theme=theme)
 
     def _set_assets(self, root: str, theme: LayoutTheme):
         css_base = [root + 'goldenlayout-base.css',

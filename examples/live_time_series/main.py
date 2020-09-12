@@ -7,6 +7,8 @@ from tornado.ioloop import PeriodicCallback
 import param
 from tornado import gen
 
+import elvis.themes
+
 
 class Live():
     """ Some trigonometry to test a live streaming panel."""
@@ -110,7 +112,7 @@ class TimeControlPanel(param.Parameterized):
 live = Live()
 control_panel = TimeControlPanel(live.computation, live.plot)
 
-gpanel = elvis.GoldenPanel(theme=elvis.LayoutTheme.LIGHT)
+gpanel = elvis.GoldenPanel(theme=elvis.themes.LayoutTheme.LIGHT)
 gpanel.compose(
     gpanel.row(
         gpanel.view(control_panel.view(), 'Controls', width=320, scrollable=False),
