@@ -1,7 +1,9 @@
 import plotly.graph_objects as go
 import plotly.io as pio
 from . import themes
+import holoviews as hv
 
+# ToDo consider making the whole thing hv independent
 
 
 class HoloviewsPlotly(themes.HoloviewsCommon):
@@ -12,10 +14,11 @@ class HoloviewsPlotly(themes.HoloviewsCommon):
         """
         Activate restyling of Bokeh plots. A more minimal style comparable to plotly.
         """
+        hv.extension('plotly')
         pio.templates["elvis"] = go.layout.Template(layout=cls.build_layout(theme))
         pio.templates.default = "elvis"
         cls.set_defaults()
-        cls.scatter3D_defaults()
+        cls.scatter3d_defaults()
 
 
     @classmethod

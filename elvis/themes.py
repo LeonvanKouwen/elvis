@@ -12,7 +12,8 @@ class ThemeSettingsLight():
     COLOR_BACKGROUND = "#f3f4f2"
     COLOR_TEXT = "#6B6B6B"
     FONT = "Helvetica"
-    FONT_SIZE = 13
+    FONT_SIZE = 18
+    FONT_SIZE_SPEC = "18px"
 
 
 class ThemeSettingsDark():
@@ -20,7 +21,8 @@ class ThemeSettingsDark():
     COLOR_BACKGROUND = "rgba(0,0,0,0)"
     COLOR_TEXT = "#cccccc"
     FONT = "Helvetica"
-    FONT_SIZE = 13
+    FONT_SIZE = 18
+    FONT_SIZE_SPEC = "18px"
 
 
 THEME_MAP = {LayoutTheme.DARK: ThemeSettingsDark,
@@ -101,7 +103,7 @@ class HoloviewsCommon():
         return opts.defaults(opts.QuadMesh(**_dict_merge(kwargs, cls.DEFAULT_QUADMESH_OPTS)))
 
     @classmethod
-    def scatter3D_defaults(cls, **kwargs):
+    def scatter3d_defaults(cls, **kwargs):
         """
           Set defaults for holoviews Points class. Use kwargs to overwrite elvis defaults
           and set user-specific defaults

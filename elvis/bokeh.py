@@ -35,11 +35,11 @@ class HoloviewsBokeh(themes.HoloviewsCommon):
                     'axis_line_color': None,
                     'major_label_text_color': bokeh_settings.COLOR_TEXT,
                     'major_label_text_font': bokeh_settings.FONT,
-                    'major_label_text_font_size': bokeh_settings.FONT_SIZE,
+                    'major_label_text_font_size': bokeh_settings.FONT_SIZE_SPEC,
                     'axis_label_standoff': 10,
                     'axis_label_text_color': bokeh_settings.COLOR_TEXT,
                     'axis_label_text_font': bokeh_settings.FONT,
-                    'axis_label_text_font_size': bokeh_settings.FONT_SIZE,
+                    'axis_label_text_font_size': bokeh_settings.FONT_SIZE_SPEC,
                     'axis_label_text_font_style': 'normal',
                 },
                 'Plot': {
@@ -49,25 +49,28 @@ class HoloviewsBokeh(themes.HoloviewsCommon):
                     'grid_line_color': bokeh_settings.COLOR_LINES},
                 'Legend': {
                     'label_text_font': bokeh_settings.FONT,
-                    'label_text_font_size': bokeh_settings.FONT_SIZE,
+                    'label_text_font_size': bokeh_settings.FONT_SIZE_SPEC,
                     'spacing': 2,
                     'label_text_color': bokeh_settings.COLOR_TEXT,
                     'border_line_color': bokeh_settings.COLOR_LINES,
                     'background_fill_color': bokeh_settings.COLOR_BACKGROUND},
-                # 'ColorBar': {
-                #     'title_text_color': '#5B5B5B',
-                #     'title_text_font': 'Helvetica',
-                #     'title_text_font_size': '1.025em',
-                #     'title_text_font_style': 'normal',
-                #     'major_label_text_color': '#5B5B5B',
-                #     'major_label_text_font': 'Helvetica',
-                #     'major_label_text_font_size': '1.025em',
-                #     'major_tick_line_alpha': 0,
-                #     'bar_line_alpha': 0},
+                'ColorBar': {
+                    'title_text_color': bokeh_settings.COLOR_TEXT,
+                    'title_text_font': bokeh_settings.FONT,
+                    'title_text_font_size': bokeh_settings.FONT_SIZE_SPEC,
+                    'title_text_font_style': 'normal',
+                    'major_label_text_color': bokeh_settings.COLOR_TEXT,
+                    'major_label_text_font': bokeh_settings.FONT,
+                    'major_label_text_font_size': bokeh_settings.FONT_SIZE_SPEC,
+                    'major_tick_line_alpha': 0,
+                    'background_fill_alpha': 0.0,
+                    #'background_fill_color': "#00ff00",
+                    'bar_line_alpha': 1.0},
                 'Title': {
                     'text_color': bokeh_settings.COLOR_TEXT,
                     'text_font': bokeh_settings.FONT,
-                    'text_font_size': bokeh_settings.FONT_SIZE}}}
+                    'text_font_size': bokeh_settings.FONT_SIZE_SPEC
+                }}}
             # This doesn't work yet, but suposedly will soon.
             #         'LineGlyph': {'line_color': '#ee33ee', 'line_width': 2},
             #         'FillGlyph': {'fill_color': 'orange'},
