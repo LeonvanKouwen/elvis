@@ -6,3 +6,4 @@ elvis/__pycache__/*
 *.html
 elvis.egg-info/dependency_links.txt
 elvis.egg-info/
+examples/basic_test/

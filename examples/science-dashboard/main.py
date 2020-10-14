@@ -1,4 +1,3 @@
-
 import panel as pn
 import elvis
 import numpy as np
@@ -6,7 +5,8 @@ import param
 import holoviews as hv
 from bokeh.models import HoverTool
 
-import elvis.themes
+
+elvis.HoloviewsBokeh.set_theme(elvis.LayoutTheme.DARK)
 
 
 class ScienceModel(param.Parameterized):
@@ -30,7 +30,7 @@ class ScienceModel(param.Parameterized):
             + x * self.relativity
         return x, y
 
-    @param.depends('flux', 'power', 'relativity', watch=True)
+    @param.depends('flux', 'power', 'relativity')
     def view(self):
         data = self.computation()
         curve = hv.Curve((data), 'realism', 'magic')
@@ -39,14 +39,14 @@ class ScienceModel(param.Parameterized):
         curve.opts(color='#eeeeee')
         return curve
 
-    @param.depends('flux', 'power', 'relativity', watch=True)
+    @param.depends('flux', 'power', 'relativity')
     def view_power(self):
         x, y = self.computation()
         curve =  hv.Curve((np.sin(y), np.cos(x)), 'fiction', 'illusion')
         curve.opts(color='#eeeeee')
         return curve
 
-    @param.depends('flux', 'power', 'relativity', watch=True)
+    @param.depends('flux', 'power', 'relativity')
     def update_kpis(self):
         _, y = self.computation()
         self.kpi_rms.value = np.linalg.norm(y)

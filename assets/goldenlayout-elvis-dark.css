@@ -117,3 +117,14 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
+
+
+.bk .card-header-row {
+    color: #aaa;
+    background: #121410;
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
+

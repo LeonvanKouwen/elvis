@@ -1,4 +1,3 @@
-
 import panel as pn
 import elvis
 import numpy as np
@@ -7,7 +6,8 @@ from tornado.ioloop import PeriodicCallback
 import param
 from tornado import gen
 
-import elvis.themes
+
+elvis.HoloviewsBokeh.set_theme(elvis.LayoutTheme.LIGHT)
 
 
 class Live():
