@@ -1,89 +1,66 @@
-
-import panel as pn
 import elvis
 import numpy as np
 import param
 import holoviews as hv
-from bokeh.models import HoverTool
+import plotly.express as px
+import plotly.graph_objects as go
 
 
-class ScienceModel(param.Parameterized):
+elvis.HoloviewsPlotly.set_theme(elvis.LayoutTheme.LIGHT)
+
+
+class Plots(param.Parameterized):
     """ An utter nonsense model to test stuff """
 
-    flux = param.Number(default=0.5, bounds=(0.0, 1.0))
-    power = param.Number(default=0.5)
-    relativity = param.Boolean(default=False)
-
     def __init__(self, **kwargs):
-        self.kpi_rms = elvis.widgets.KPI(title='Root-Mean-Square', units='a.u.')
-        self.kpi_std = elvis.widgets.KPI(title='Standard Deviation', units='m2/s')
-        self.kpi_per = elvis.widgets.KPI(title='performance', units='ka')
         super().__init__(**kwargs)
-        self.update_kpis()
 
-    def computation(self):
-        x = np.linspace(0, 10, 100)
-        y = 1 - 0.1 * self.flux * x ** 2 \
-            +  np.sqrt(self.power * x) \
-            + x * self.relativity
-        return x, y
+    def view_1(self):
+        y, x = np.mgrid[-5:5, -5:5] * 0.1
+        heights = np.sin(x ** 2 + y ** 2)
+        hv.Scatter3D((x.flat, y.flat, heights.flat)).opts(
+            cmap='fire', color='z', size=5)
 
-    @param.depends('flux', 'power', 'relativity', watch=True)
-    def view(self):
-        data = self.computation()
-        curve = hv.Curve((data), 'realism', 'magic')
-        tooltips = [('', '@realism, @magic')]
-        curve.opts(tools=[HoverTool(mode='vline', tooltips=tooltips)])
-        curve.opts(color='#eeeeee')
+        plot = ( hv.Scatter3D(np.random.randn(100, 4), vdims='Size')
+               * hv.Scatter3D(np.random.randn(100, 4) + 2,vdims='Size'))
+        plot.opts(height=100, width=200)
+        return plot
+
+    def view_2(self):
+        x = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        y = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        curve =  hv.Points((x, y)).opts(height=100, width=200)
         return curve
 
-    @param.depends('flux', 'power', 'relativity', watch=True)
-    def view_power(self):
-        x, y = self.computation()
-        curve =  hv.Curve((np.sin(y), np.cos(x)), 'fiction', 'illusion')
-        curve.opts(color='#eeeeee')
-        return curve
+    def view_3(self):
+        fig = px.line(x=["a", "b", "c"], y=[1, 3, 2], title="sample figure")
+        return fig
 
-    @param.depends('flux', 'power', 'relativity', watch=True)
-    def update_kpis(self):
-        _, y = self.computation()
-        self.kpi_rms.value = np.linalg.norm(y)
-        self.kpi_std.value = np.std(y)
-        self.kpi_per.value = np.linalg.norm(y ** 2)
+    def view_4(self):
+        fig = go.Figure()
 
+        fig.add_trace(go.Bar(
+            x=["Apples", "Oranges", "Watermelon", "Pears"],
+            y=[3, 2, 1, 4]
+        ))
 
-model = ScienceModel()
+        fig.update_layout(
+            responsive=True,
+        )
 
-panel_1 = model.view
-panel_2 = pn.Column(pn.widgets.LiteralInput(value=123.234234, name="Unused parameter"),
-                    pn.widgets.Toggle(name="Dummy 1"),
-                    pn.widgets.Toggle(name="Dummy 2"),
-                    pn.widgets.Toggle(name="Dummy 3"),
-                    pn.panel(model.param, show_name=False))
-panel_3 = pn.Column(model.kpi_rms.view,
-                    model.kpi_std.view,
-                    model.kpi_per.view,
-                    margin=10)
-panel_4a = model.view_power
-panel_4b = pn.pane.Markdown(''.join(str(x) + '\n ' for x in range(1000)))
-panel_4c = pn.pane.Markdown("##Empty")
+        return fig
 
-gpanel = elvis.GoldenPanel(theme=elvis.LayoutTheme.DARK)
+model = Plots()
+
+gpanel = elvis.GoldenPanel(theme=elvis.LayoutTheme.LIGHT)
 gpanel.compose(
-    gpanel.column(
-        gpanel.header("Elvis Example // Scientific Dashboard"),
-        gpanel.row(
-            gpanel.view(panel_1, 'Curve', scrollable=False),
-            gpanel.view(panel_2, 'Controls'),
-            gpanel.view(panel_3, 'KPI')),
-        gpanel.stack(
-            gpanel.view(panel_4a, 'Transformation', scrollable=False),
-            gpanel.view(panel_4b, 'Long Text'),
-            gpanel.view(panel_4c, 'Empty'))))
+        gpanel.column(
+            gpanel.view(model.view_1, 'holoviews 1', scrollable=False),
+            gpanel.view(model.view_2, 'holoviews 2', scrollable=False),
+            gpanel.view(model.view_3, 'px', scrollable=False),
+            gpanel.view(model.view_3, 'plotly', scrollable=False)))
 
 gpanel.serve(title="Science Dashboard", show=False, port=5051)
-
-
 
 
 
