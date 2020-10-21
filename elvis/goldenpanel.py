@@ -23,62 +23,89 @@ class GoldenPanel:
     Only create golden panels in one go; use one compose method and nest the stack, row,
     colum, and panel methods. Do not create panels without adding them to
     the composition string.
-
-    Note that the Bokeh is automatically set to a corresponding theme. Changes
-    can be made after constructing the object.
     """
 
-    def __init__(self, title="Elvis", theme: LayoutTheme=LayoutTheme.DARK):
+    def __init__(self, theme: LayoutTheme=LayoutTheme.DARK):
         """
-
-        :param theme: Choose between 'light' and 'dark'.
-        :param title: Title for the browser tab.
-
+        :param theme: use elvis.LayoutTheme.DARK or elvis.LayoutTheme.LIGHT
         """
-        self.title = title
         self.theme = theme
         self.panels = {}
         self.counter = 0
         self.app = None
 
+    def serve(self, static_dirs=None, **kwargs):
+        """ Wrapper for pn.serve(), with the inclusion of the required static assets.
+        :static_dirs: Specify directories with static assets in addition to the standard elvis assets.
+        :kwargs: key word arguments that are passed on to pn.serve
+        """
+        static_dirs = {} if static_dirs is None else static_dirs
+        assets_elvis = {'assets': os.path.abspath(
+            os.path.join(os.path.dirname(__file__), os.pardir, 'assets'))}
+        self._set_assets("assets\\", self.theme)
+        return pn.serve(self.app, static_dirs={**assets_elvis, **static_dirs}, **kwargs)
+
+    def servable(self, **kwargs) -> None:
+        """
+        !!! NOT WORKING !!!
+
+        Wrapper for pn.app.servable(), with the inclusion of the required static assets.
+
+        """
+        #raise NotImplementedError
+        # self._set_assets("assets\\", self.theme)
+        # static_dirs = {} if static_dirs is None else static_dirs
+        # assets_elvis = {'assets': os.path.abspath(
+        #     os.path.join(os.path.dirname(__file__), os.pardir, 'assets'))}
+        self._set_assets(os.path.join(os.path.dirname(__file__), os.pardir, 'assets\\'), self.theme)
+        self.app.servable(**kwargs)
+
     def _set_assets(self, root: str, theme: LayoutTheme):
+        """ Add the static files (.css and .js) to the panel config. """
         css_base = [root + 'goldenlayout-base.css',
                     root + 'goldenlayout-elvis.css',
                     root + 'panel-customizations.css']
         css_theme = {LayoutTheme.LIGHT: [root + 'goldenlayout-elvis-light.css',
                                          root + 'panel-customizations-light.css'],
-                      LayoutTheme.DARK: [root + 'goldenlayout-elvis-dark.css',
-                                         root + 'panel-customizations-dark.css']}
+                     LayoutTheme.DARK: [root + 'goldenlayout-elvis-dark.css',
+                                        root + 'panel-customizations-dark.css']}
         js_files = {'jquery': root + 'js\jquery-1.11.1.min.js',
                     'goldenlayout': root + 'js\goldenlayout.min.js'}
         css_files = css_base + css_theme[theme]
-        pn.config.js_files =  js_files
+        pn.config.js_files = js_files
         pn.config.css_files = css_files
-
-    def serve(self, static_dirs=None, **kwargs):
-        """ Wrapper for pn.serve, with the inclusion of the required static assets."""
-        static_dirs = {} if static_dirs is None else static_dirs
-        assets_elvis = {'assets': os.path.abspath(
-            os.path.join(os.path.dirname(__file__), os.pardir, 'assets'))}
-        kwargs.setdefault('title', self.title)
-        self._set_assets("assets\\", self.theme)
-        return pn.serve(self.app, static_dirs={**assets_elvis, **static_dirs}, **kwargs)
-
-    def servable(self, root="elvis") -> None:
-        """ Wrapper for servable, with the inclusion of the required static assets."""
-        self._set_assets(root + "\\static\\", self.theme)
-        self.app.servable(title=self.title)
 
     def compose(self, golden_layout: str) -> None:
         """
         Creates a servable template from a golden layout js code string.
-        :param golden_layout_string: Result of nesting stacks, columns, rows, and panels
-                                     using the methods in this class.
+        Any GoldenPanel object needs to call compose exactly once to function as expected.
+        :param golden_layout: Result of nesting stacks, columns, rows, and panels
+                              using the methods in this class.
         """
         template = ClientSideCodeStrings.JINJA2_BASE % golden_layout
         self.app = pn.Template(template=template)
         for panel_ID, panel in self.panels.items():
             self.app.add_panel(panel_ID, panel)
+
+    def stack(self, *args: str) -> str:
+        """ Adds a 'tab' element. Every argument should be a view or another nestable (stack, column, row)."""
+        return self._block(*args, type=Block.stack)
+
+    def column(self, *args: str) -> str:
+        """ Vertically aligned panels. Every argument should be a view or another nestable (stack, column, row)."""
+        return self._block(*args, type=Block.column)
+
+    def row(self, *args: str) -> str:
+        """ Horizontally aligned panels. Every argument should be a view or another nestable (stack, column, row)."""
+        return self._block(*args, type=Block.row)
+
+    def _block(self, *args: str, type: Block=Block.stack) -> str:
+        """
+        Creates nestable js code strings. Note that 'stack', 'colum' and 'row' are the
+        strings dictated by the golden layout js code.
+        """
+        content = ''.join(arg for arg in args)
+        return ClientSideCodeStrings.NESTABLE % (type.name, content)
 
     def view(self, view,
              title: str=None,
@@ -112,25 +139,10 @@ class GoldenPanel:
         return self.view(pn.pane.HTML(f"<div class='title'>{header}</div>",
                                       sizing_mode='stretch_width'), height=height)
 
-    def _block(self, *args: str, type: Block=Block.stack) -> str:
-        """
-        Creates nestable js code strings. Note that 'stack', 'colum' and 'row' are the
-        strings dictated by the golden layout js code.
-        """
-        content = ''.join(arg for arg in args)
-        return ClientSideCodeStrings.NESTABLE % (type.name, content)
 
-    def stack(self, *args: str) -> str:
-        """ Adds a 'tab' element. Every argument should be a view or another nestable (stack, column, row)."""
-        return self._block(*args, type=Block.stack)
 
-    def column(self, *args: str) -> str:
-        """ Vertically aligned panels. Every argument should be a view or another nestable (stack, column, row)."""
-        return self._block(*args, type=Block.column)
 
-    def row(self, *args: str) -> str:
-        """ Horizontally aligned panels. Every argument should be a view or another nestable (stack, column, row)."""
-        return self._block(*args, type=Block.row)
+
 
 
 class ClientSideCodeStrings:
