@@ -45,21 +45,23 @@ Some documentation is generated using pdoc3 and can be found in 'docs'.
 ## How do I get set up?
 
 ### Installation
-From the directory in which the package folder is located use the following command to install:
+Elvis can be installed using:
 
-    pip install elvis
+	git clone https://github.com/LeonvanKouwen/elvis.git
+	cd elvis	
+	pip install .
+	
+It is now possible to remove the elvis folder. Be careful not to simply run `conda install elvis`, or `pip install elvis`, because you will install something else. 
 
-It is now possible to remove the elvis folder. To install in developers mode (changes to local
-elvis files are active) use:
+If you want to develop, it is best to add the elvis root directory to the 'sources root' of your IDE. 
 
-    pip install -e elvis
+### Dependencies
 
-At present it is required do use a developers install of panel. Follow the instructions
-[here](https://panel.holoviz.org/developer_guide/index.html). Note that this is only required
-temporarily, as serving static assets will be included in the standard panel distribution at some point.
-The panel version in which elvis is tested is:
+* panel > 0.10.0 (0.9.x will NOT work)
+* holoviews
+* plotly
 
-* panel 0.10.0a2.post9+g643033f dev_0
+Currently plotly is required, even when not used. This will be refactored out.
 
 ### Examples
 To get started with some examples look at the examples folder.
