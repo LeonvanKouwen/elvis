@@ -68,6 +68,10 @@ To get started with some examples look at the examples folder.
 - live_time_series shows the asynchronous live plotting functionality in the light theme
 - science-dashboard shows the dark theme and some standard panel/param functionality.
 
+### Usage
+
+Elvis internally uses the panel command `panel.serve()`, which launches a server when running the code as a script. This is currently the only way to use elvis. Panel can also be run from the command line using `panel serve dirname`, but this is NOT supported. 
+
 ### Resources
 
 This package is just a very thin layer around the holoviz framework and the golden layout GUI package. 
