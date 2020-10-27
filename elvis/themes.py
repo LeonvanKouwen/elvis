@@ -17,8 +17,8 @@ class ThemeSettingsLight():
 
 
 class ThemeSettingsDark():
-    COLOR_LINES = "#3c4033"
-    COLOR_BACKGROUND = "rgba(0,0,0,0)"
+    COLOR_LINES = "#121410"
+    COLOR_BACKGROUND = "#3c4033" #"rgba(0,0,0,0)"
     COLOR_TEXT = "#cccccc"
     FONT = "Helvetica"
     FONT_SIZE = 18

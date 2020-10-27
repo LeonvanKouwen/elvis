@@ -1,7 +1,5 @@
 """
 Setting up the defaults for nice Bokeh plots.
-
-NOTE: Works, but may become deprecated due to migration to plotly.
 """
 
 import holoviews as hv
@@ -85,7 +83,7 @@ class HoloviewsBokeh(themes.HoloviewsCommon):
     @classmethod
     def set_theme(cls, theme: themes.LayoutTheme=themes.LayoutTheme.DARK):
         """
-        Activate restyling of Bokeh plots. A more minimal style comparable to plotly.
+        Activate Restyling
         :param theme:
         """
         hv.extension('bokeh')

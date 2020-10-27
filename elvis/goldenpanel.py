@@ -140,11 +140,6 @@ class GoldenPanel:
                                       sizing_mode='stretch_width'), height=height)
 
 
-
-
-
-
-
 class ClientSideCodeStrings:
     """ Namespace class to hold client size code (html, javascript and jinja2) """
 

@@ -54,7 +54,7 @@ model = Plots()
 
 gpanel = elvis.GoldenPanel(theme=elvis.LayoutTheme.LIGHT)
 gpanel.compose(
-        gpanel.column(
+        gpanel.row(
             gpanel.view(model.view_1, 'holoviews 1', scrollable=False),
             gpanel.view(model.view_2, 'holoviews 2', scrollable=False),
             gpanel.view(model.view_3, 'px', scrollable=False),
