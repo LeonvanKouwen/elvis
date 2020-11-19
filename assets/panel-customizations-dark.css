@@ -7,6 +7,7 @@
 .bk-btn-default {
     color: #000 !important;
     border: 1px #0a0b09 !important;
+    border: 10px #0fa !important;
     background-color: #fb961e !important;
 }
 
@@ -34,8 +35,6 @@
     border: 1px solid #666 !important;
 }
 
-
-
 .bk-input:hover {
     border-color: #aaa !important;
 }
@@ -60,5 +59,18 @@
 
 .kpi-units {
     color: #888;
+}
+
+.bk .card-header {
+    background: #3c4033 !important;
+        color: #fb961e !important;
+}
+
+.bk .card  {
+    background: #3c4033;
+}
+
+.bk .card-title .card-button {
+    color: #fb961e !important;
 }
 
